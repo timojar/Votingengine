@@ -1,17 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="ISO-8859-1"%>
+ <%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
+ <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>   
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title><spring:message code="opiskelija.create.title"></spring:message></title>
 
-<title>Insert title here</title>
+
+
+
+
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <!--Import materialize.css-->
 <link type="text/css" rel="stylesheet" href="../resources/css/materialize.min.css" 
 	media="screen,projection" />
-	
+
+<link type="text/css" rel="stylesheet" href="../resources/css/form.css"> 		
 <link type="text/css" rel="stylesheet" href="../resources/css/tyyli.css"> 	
 
 <!--Let browser know website is optimized for mobile-->
@@ -19,14 +27,10 @@
 
 
 </head>
-
-
-
-	
 <body>
 
 
-	<!--Import jQuery before materialize.js-->
+<!--Import jQuery before materialize.js-->
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
@@ -45,60 +49,94 @@
 	
 
 
- 
-
-  
-        
- 
- 
- 
- <br>
-  <br>
-   <br>
-   
-   
-   <div id="sisalto">
- 
- <h1>Innovaatiot</h1>
- 
- 
- 
- 
- 
- 
- 
- 
-        
-        
-         
-          
-     
-            
- <table>
- <tbody>
- 
- 
- <c:forEach var="innovaatio" items="${innot }">
- 
- <tr>
-            <td id=""><c:out value="${innovaatio.nimi }"></c:out></td>
-            <td><c:out value="${innovaatio.aihe }"></c:out></td>
-            <td><a class="waves-effect waves-light btn">äänestä</a></td>
-          </tr>
-        
- 
-</c:forEach>
 
 
-</tbody>
-  </table>
- 
- 
+<h1><spring:message code="opiskelija.create.heading"></spring:message></h1>
+ <div class="row">
+<form:form modelAttribute="opiskelija" method="post" class="col s12">
+
+
+
+<div class="row">
+<div class="input-field col s6">
+<form:label path="etunimi" for="first_name"><spring:message code="opiskelija.create.etunimi"></spring:message></form:label>
+<br>
+<form:input path="etunimi"/><form:errors path="etunimi" id="first_name" type="text" class="validate" cssClass="Virheteksti"/>
+
+
+
 
 </div>
 
 
- <footer class="page-footer blue lighten-1">
+ <div class="input-field col s6">
+ <form:label for="last_name" path="sukunimi"><spring:message code="opiskelija.create.sukunimi"></spring:message></form:label>
+ <br>
+ <form:input id="last_name" type="text" class="validate" path="sukunimi"/><form:errors path="sukunimi" cssClass="Virheteksti"></form:errors>
+
+
+
+</div>
+</div>
+
+
+<div class="row">
+<div class="input-field col s12">
+<form:label path="email"><spring:message code="opiskelija.create.email"></spring:message></form:label>
+<br>
+
+<form:input  path="email" /><form:errors path="email" cssClass="Virheteksti"></form:errors>
+</div>
+</div>
+
+
+<br>
+<br>
+<div class="row">
+<div class="input-field col s12">
+<form:label path="opiskelijanumero"><spring:message code="opiskelija.create.opiskelijanumero"></spring:message></form:label>
+<br>
+<form:input path="opiskelijanumero"/><form:errors path="opiskelijanumero" cssClass="Virheteksti"></form:errors>
+</div>
+</div>
+
+<br>
+<br>
+
+<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
+        
+
+
+</form:form>
+
+</div>
+
+
+
+
+
+
+
+
+
+ 
+  
+      
+        
+         
+       
+         
+         
+      
+   
+        
+
+
+
+
+<footer class="page-footer blue lighten-1">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
@@ -118,17 +156,19 @@
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © 2014 Copyright Text
+            � 2014 Copyright Text
             <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
             </div>
           </div>
-        </footer>
+        </footer>	
+
+  
+
+
+
+
+
 
 
 </body>
 </html>
-
-
-
-
-

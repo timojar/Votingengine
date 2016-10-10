@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -36,9 +36,9 @@
     <div class="nav-wrapper blue lighten-1">
       <a href="#!" class="brand-logo center">Innovaatio</a>
       <ul class="left hide-on-med-and-down">
-        <li><a href="sass.html">Tilaisuuteen ilmoittautuminen</a></li>
-        <li><a href="badges.html">Oma innovaatio</a></li>
-        <li class="active"><a href="innot/innovaatiot">ƒ‰nest‰m‰‰n</a></li>
+        <li><a href="opiskelijat/uusi">Tilaisuuteen ilmoittautuminen</a></li>
+        <li><a href="innot/uusi">Oma innovaatio</a></li>
+        <li class="active"><a href="innot/innovaatiot">√Ñ√§nest√§m√§√§n</a></li>
       </ul>
     </div>
   </nav>
@@ -79,7 +79,7 @@
               <p>Tervetuloa vuoden 2016 innovaatiotilaisuuteen</p>
             </div>
             <div class="card-action">
-              <a href="innot/innovaatiot">Tervetuloa ‰‰nest‰m‰‰n</a>
+              <a href="innot/innovaatiot">Tervetuloa √§√§nest√§m√§√§n</a>
             </div>
           </div>
         </div>
@@ -123,7 +123,7 @@
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © 2014 Copyright Text
+            ¬© 2014 Copyright Text
             <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
             </div>
           </div>

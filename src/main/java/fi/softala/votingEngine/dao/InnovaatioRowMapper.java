@@ -13,9 +13,9 @@ public class InnovaatioRowMapper implements RowMapper<Innovaatio> {
 
 	public Innovaatio mapRow(ResultSet rs, int rownumber) throws SQLException {  
         Innovaatio i=new Innovaatio();  
-        i.setId(rs.getInt(1));  
-        i.setNimi(rs.getString(2)); 
-        i.setAihe(rs.getString(3));
+        i.setId(rs.getInt("id"));  
+        i.setNimi(rs.getString("nimi")); 
+        i.setAihe(rs.getString("aihe"));
         return i;  
     } 	
 	
