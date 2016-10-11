@@ -1,0 +1,29 @@
+
+
+Create table 
+innovaatio
+(
+id integer NOT NULL AUTO_INCREMENT primary key  ,
+
+nimi  varchar(30) NOT NULL,
+
+aihe varchar(50) NOT NULL);
+
+
+
+
+Create table opiskelija
+(
+id integer NOT NULL primary key AUTO_INCREMENT,
+
+etunimi varchar(50) NOT NULL,
+
+sukunimi varchar(150) NOT NULL,
+
+email varchar(200) NOT NULL,
+
+innovaatioId integer NOT NULL,
+
+opiskelijanumero char(8),
+
+foreign key (innovaatioId) references innovaatio(id) )

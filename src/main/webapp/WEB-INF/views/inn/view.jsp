@@ -9,6 +9,9 @@
 
 <link type="text/css" rel="stylesheet" href="../resources/css/materialize.min.css" 
 	media="screen,projection" />
+	
+<link type="text/css" rel="stylesheet" href="../resources/css/tyyli.css" 
+	/>	
 
 
 </head>
@@ -26,21 +29,73 @@
     </div>
   </nav>
 	
-
+<div id="sisalto">
 
 
 <h1>Tiedot</h1>
 
 
-<c:out value="${opiskelija.etunimi }"></c:out>
-<c:out value="${opiskelija.sukunimi }"></c:out>
-<c:out value="${opiskelija.email }"></c:out>
-<c:out value="${opiskelija.opiskelijanumero }"></c:out>
-<c:out value="${opiskelija.innovaatio.nimi}"></c:out>
-<c:out value="${opiskelija.innovaatio.aihe}"></c:out>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+ <table class="centered">
+        <thead>
+          <tr>
+              <th data-field="id">Studennumber</th>
+              <th data-field="name">Firstname</th>
+              <th data-field="price">Lastname</th>
+              <th data-field="price">Email</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><c:out value="${opiskelija.opiskelijanumero }"></c:out></td>
+            <td><c:out value="${opiskelija.etunimi }"></c:out></td>
+            <td><c:out value="${opiskelija.sukunimi }"></c:out></td>
+            <td><c:out value="${opiskelija.email }"></c:out></td>
+          </tr>
+  
+
+        </tbody>
+      </table>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<table >
+        <thead>
+          <tr>
+              <th data-field="id">Name of the Innovation</th>
+              
+             
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><c:out value="${opiskelija.innovaatio.nimi}"></c:out></td>
+            <td><c:out value="${opiskelija.innovaatio.aihe}"></c:out></td>
+            
+          </tr>
+  
+
+        </tbody>
+      </table>
 
 
 
+
+<br>
+<br>
+<br>
+<br>
 
 
 
