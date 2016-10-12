@@ -7,16 +7,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-@RequestMapping (value="/logfin")
+@RequestMapping (value="/")
 public class LoginController {
-	
-	
-	
+ 
 	@RequestMapping(value="/loginpage", method = RequestMethod.GET)
 	public String login(Model model) {
  
-		return "security/login";
+		return "login";
  
-	}	
+	}
+ 
+	@RequestMapping(value="/loginfail", method = RequestMethod.GET)
+	public String loginerror(Model model) {
+ 
+		model.addAttribute("loginerror", "true");
+		return "login";
+ 
+	}
+ 
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout(Model model) {
 
+		model.addAttribute("loggedout", "true");
+		return "login";
+ 
+	}
+	
 }
