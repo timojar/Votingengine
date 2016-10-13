@@ -74,13 +74,13 @@
 
 	<sec:http auto-config="true" use-expressions="true">
 		
-		<sec:intercept-url pattern="/inn/listaus/**" access="hasRole('ROLE_ADMIN')" />
-		<sec:intercept-url pattern="/inn/listaus/*" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/innot/**" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/innot/*" access="isAuthenticated()" />
 		<sec:intercept-url pattern="/*" access="permitAll" />
 
 		<sec:form-login
 			login-page="/loginpage"
-			default-target-url="/secure/main"
+			default-target-url="/innot/innovaatiot"
 			authentication-failure-url="/loginfail" />
 			
 		<sec:logout logout-success-url="/logout" />
