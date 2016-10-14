@@ -9,7 +9,7 @@ public class Opiskelija {
 	
 	
 private int id	;
-private int innovaatioId;
+private int ryhmaId;
 private Innovaatio innovaatio;
 
 @Pattern(regexp="a\\d{7}") private String opiskelijanumero;
@@ -29,11 +29,12 @@ public void setId(int id) {
 
 
 
-public int getInnovaatioId() {
-	return innovaatioId;
+
+public int getRyhmaId() {
+	return ryhmaId;
 }
-public void setInnovaatioId(int innovaatioId) {
-	this.innovaatioId = innovaatioId;
+public void setRyhmaId(int ryhmaId) {
+	this.ryhmaId = ryhmaId;
 }
 public String getOpiskelijanumero() {
 	return opiskelijanumero;

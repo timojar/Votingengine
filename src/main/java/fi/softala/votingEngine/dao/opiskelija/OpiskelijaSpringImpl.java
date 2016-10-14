@@ -1,4 +1,4 @@
-package fi.softala.votingEngine.dao;
+package fi.softala.votingEngine.dao.opiskelija;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +16,9 @@ import org.springframework.jdbc.support.KeyHolder;
 
 
 
+
 import fi.softala.votingEngine.bean.Opiskelija;
+import fi.softala.votingEngine.dao.EiLoydyPoikkeus;
 
 public class OpiskelijaSpringImpl implements OpiskelijaDao{
 	

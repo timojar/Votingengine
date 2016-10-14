@@ -1,4 +1,4 @@
-package fi.softala.votingEngine.dao;
+package fi.softala.votingEngine.dao.innovaatio;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,8 +18,14 @@ import org.springframework.stereotype.Repository;
 
 
 
+
+
+
 import fi.softala.votingEngine.bean.Innovaatio;
 import fi.softala.votingEngine.bean.Opiskelija;
+import fi.softala.votingEngine.bean.Ryhma;
+import fi.softala.votingEngine.dao.EiLoydyPoikkeus;
+import fi.softala.votingEngine.dao.opiskelija.OpiskelijaRowMapper;
 
 @Repository
 public class InnovaatioSpringImpl implements InnovaatioDao {
@@ -55,12 +61,13 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 		
 		
 		
-		final String sql = "insert into innovaatio(nimi, aihe) values(?,?)";
+		final String sql = "insert into innovaatio(nimi, aihe, ryhmaId) values(?,?,?)";
 
 		// anonyymi sis‰luokka tarvitsee vakioina v‰litett‰v‰t arvot,
 		// jotta roskien keruu onnistuu t‰m‰n metodin suorituksen p‰‰ttyess‰.
 		final String nimi = i.getNimi();
 		final String aihe = i.getAihe();
+		final int ryhmaId=i.getRyhmaId();
 
 		// jdbc pist‰‰ generoidun id:n t‰nne talteen
 		KeyHolder idHolder = new GeneratedKeyHolder();
@@ -74,6 +81,7 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 						new String[] { "id" });
 				ps.setString(1, nimi);
 				ps.setString(2, aihe);
+				ps.setInt(3, ryhmaId);
 				return ps;
 			}
 		}, idHolder);
@@ -90,7 +98,7 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 	
 	
 	
-	public Innovaatio etsiInnovaatio(int id){
+	public Innovaatio etsiInnovaatio(int ryhmaId){
 		
 		
 		
@@ -98,8 +106,8 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 		
 		
 		
-		String sql = "select nimi, aihe, id from innovaatio where id = ?";
-		Object[] parametrit = new Object[] { id };
+		String sql = "select nimi, aihe, id from innovaatio where ryhmaId = ?";
+		Object[] parametrit = new Object[] { ryhmaId };
 		RowMapper<Innovaatio> mapper = new InnovaatioRowMapper();
 
 		Innovaatio i;
@@ -125,7 +133,7 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 		
 		
 		
-		final String sql = "insert into opiskelija(etunimi, sukunimi, opiskelijanumero, email, innovaatioId) values(?,?,?,?,?)";
+		final String sql = "insert into opiskelija(etunimi, sukunimi, opiskelijanumero, email, ryhmaId, valtuusId) values(?,?,?,?,?,?)";
 
 		// anonyymi sis‰luokka tarvitsee vakioina v‰litett‰v‰t arvot,
 		// jotta roskien keruu onnistuu t‰m‰n metodin suorituksen p‰‰ttyess‰.
@@ -133,7 +141,8 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 		final String sukunimi = o.getSukunimi();
 		final String opiskelijanumero=o.getOpiskelijanumero();
 		final String email=o.getEmail();
-		final int innovaatioId=o.getInnovaatio().getId();
+		final int ryhmaId=o.getRyhmaId();
+		final int valtuusId=1;
 
 		// jdbc pist‰‰ generoidun id:n t‰nne talteen
 		KeyHolder idHolder = new GeneratedKeyHolder();
@@ -149,7 +158,8 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 				ps.setString(2, sukunimi);
 				ps.setString(3, opiskelijanumero);
 				ps.setString(4, email);
-				ps.setInt(5, innovaatioId);
+				ps.setInt(5, ryhmaId);
+				ps.setInt(6, valtuusId);
 				return ps;
 			}
 		}, idHolder);
@@ -177,7 +187,7 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 			
 			
 			 
-			 String sql = "select etunimi, sukunimi, opiskelijanumero, email, innovaatioId, id from opiskelija where id = ?";
+			 String sql = "select etunimi, sukunimi, opiskelijanumero, email, ryhmaId, id from opiskelija where id = ?";
 				Object[] parametrit = new Object[] { id };
 				RowMapper<Opiskelija> mapper = new OpiskelijaRowMapper();
 
@@ -199,9 +209,59 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 
 
 	
+	public int talletaRyhma(Ryhma ryhma){
+		
+		
+		
+		
+		
+		
+		final String sql = "insert into ryhma(nimi, tyyppi) values(?,?)";
+
+		// anonyymi sis‰luokka tarvitsee vakioina v‰litett‰v‰t arvot,
+		// jotta roskien keruu onnistuu t‰m‰n metodin suorituksen p‰‰ttyess‰.
+		final String nimi = ryhma.getNimi();
+		final String tyyppi = ryhma.getTyyppi();
+		
+
+		// jdbc pist‰‰ generoidun id:n t‰nne talteen
+		KeyHolder idHolder = new GeneratedKeyHolder();
+
+		// suoritetaan p‰ivitys itse m‰‰ritellyll‰ PreparedStatementCreatorilla
+		// ja KeyHolderilla
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			public PreparedStatement createPreparedStatement(
+					Connection connection) throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(sql,
+						new String[] { "id" });
+				ps.setString(1, nimi);
+				ps.setString(2, tyyppi);
+				
+				return ps;
+			}
+		}, idHolder);
+
+		// tallennetaan id takaisin beaniin, koska
+		// kutsujalla pit‰isi olla viittaus samaiseen olioon
+		ryhma.setId(idHolder.getKey().intValue());	
+		
+		int ryhmaId=ryhma.getId();
+		
+		
+		
+		
+		
+		return ryhmaId;
+	}
+	
+	
+	
+		
 		
 	
+		
+	}
 	
 	
 
-}
+

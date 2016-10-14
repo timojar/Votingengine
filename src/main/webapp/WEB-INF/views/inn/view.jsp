@@ -53,10 +53,10 @@
 
         <tbody>
           <tr>
-            <td><c:out value="${opiskelija.opiskelijanumero }"></c:out></td>
-            <td><c:out value="${opiskelija.etunimi }"></c:out></td>
-            <td><c:out value="${opiskelija.sukunimi }"></c:out></td>
-            <td><c:out value="${opiskelija.email }"></c:out></td>
+            <td><c:out value="${opiskelija1.opiskelijanumero }"></c:out></td>
+            <td><c:out value="${opiskelija1.etunimi }"></c:out></td>
+            <td><c:out value="${opiskelija1.sukunimi }"></c:out></td>
+            <td><c:out value="${opiskelija1.email }"></c:out></td>
           </tr>
   
 
@@ -80,8 +80,8 @@
 
         <tbody>
           <tr>
-            <td><c:out value="${opiskelija.innovaatio.nimi}"></c:out></td>
-            <td><c:out value="${opiskelija.innovaatio.aihe}"></c:out></td>
+            <td><c:out value="${opiskelija1.innovaatio.nimi}"></c:out></td>
+            <td><c:out value="${opiskelija1.innovaatio.aihe}"></c:out></td>
             
           </tr>
   

@@ -1,4 +1,4 @@
-package fi.softala.votingEngine.dao;
+package fi.softala.votingEngine.dao.opiskelija;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +19,7 @@ public class OpiskelijaRowMapper implements RowMapper<Opiskelija>{
         o.setSukunimi(rs.getString("sukunimi"));
         o.setEmail(rs.getString("email"));
         o.setOpiskelijanumero(rs.getString("opiskelijanumero"));
-        o.setInnovaatioId(rs.getInt("innovaatioId"));
+        o.setRyhmaId(rs.getInt("ryhmaId"));
         
         return o;  
     } 	

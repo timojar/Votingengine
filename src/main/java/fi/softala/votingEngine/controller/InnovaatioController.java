@@ -17,11 +17,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import fi.softala.votingEngine.bean.Innovaatio;
 import fi.softala.votingEngine.bean.Opiskelija;
-import fi.softala.votingEngine.dao.InnovaatioDao;
+import fi.softala.votingEngine.bean.Ryhma;
+import fi.softala.votingEngine.dao.innovaatio.InnovaatioDao;
 
 @Controller
 @RequestMapping(value = "/innot")
 @SessionAttributes("opiskelija")
+
 public class InnovaatioController {
 
 	@Inject
@@ -66,27 +68,53 @@ public class InnovaatioController {
 		}
 
 		else {
-
+			Ryhma ryhma=new Ryhma();
+			String nimi=innovaatio.getNimi();
+			String tyyppi="innovaatio";
+			ryhma.setTyyppi(tyyppi);
+			ryhma.setNimi(nimi);
+			
+			
+			int ryhmaId=innovaatiodao.talletaRyhma(ryhma);
+			innovaatio.setRyhmaId(ryhmaId);
+			
 			int id = innovaatiodao.talletaInnovaatio(innovaatio);
-
+			
+			/* 
+			 * talletaRyhma(innovaatio)-metodin parametrinä on innovaatio,
+			 *  koska ryhman nimi tulee olemaan sama kuin innovaation nimi
+			 */
+			
+			
+			
+			o.setRyhmaId(ryhmaId);
 			innovaatio.setId(id);
 			o.setInnovaatio(innovaatio);
+			
 			innovaatiodao.talletaOpiskelija(o);
- 
+			
+			
+			return "redirect:/innot/"+o.getId();
 		}
 
-		return "redirect:/innot/"+o.getId();
+		
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
-	public String getView(@PathVariable Integer id, Model model) {
-		Opiskelija o = innovaatiodao.etsiOpiskelija(id);
-		id = o.getInnovaatioId();
-
-		Innovaatio innovaatio = innovaatiodao.etsiInnovaatio(id);
+	public ModelAndView getView(@PathVariable Integer id) {
+		
+		
+		Opiskelija o=innovaatiodao.etsiOpiskelija(id);
+		int ryhmaId=o.getRyhmaId();
+		Innovaatio innovaatio=innovaatiodao.etsiInnovaatio(ryhmaId);
+		
 		o.setInnovaatio(innovaatio);
-		model.addAttribute("opiskelija", o);
-		return "inn/view";
+		
+		ModelAndView model = new ModelAndView("inn/view");
+		model.addObject("opiskelija1", o);
+		
+		
+		return model;
 	}
 
 }

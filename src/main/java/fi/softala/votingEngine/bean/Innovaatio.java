@@ -7,6 +7,17 @@ public class Innovaatio {
 	
 	
 private int id;
+private int ryhmaId;
+
+
+
+public int getRyhmaId() {
+	return ryhmaId;
+}
+
+public void setRyhmaId(int ryhmaId) {
+	this.ryhmaId = ryhmaId;
+}
 
 private @Size(min= 1, max=50) String nimi;
 private @Size(min= 1, max=70)String  aihe;

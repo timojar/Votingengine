@@ -1,4 +1,4 @@
-package fi.softala.votingEngine.dao;
+package fi.softala.votingEngine.dao.opiskelija;
 
 import java.util.List;
 
