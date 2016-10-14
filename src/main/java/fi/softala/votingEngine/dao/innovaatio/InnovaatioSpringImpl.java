@@ -21,11 +21,14 @@ import org.springframework.stereotype.Repository;
 
 
 
+
+
 import fi.softala.votingEngine.bean.Innovaatio;
 import fi.softala.votingEngine.bean.Opiskelija;
 import fi.softala.votingEngine.bean.Ryhma;
 import fi.softala.votingEngine.dao.EiLoydyPoikkeus;
 import fi.softala.votingEngine.dao.opiskelija.OpiskelijaRowMapper;
+import fi.softala.votingEngine.util.Kryptaaja;
 
 @Repository
 public class InnovaatioSpringImpl implements InnovaatioDao {
@@ -41,11 +44,12 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	public List<Innovaatio> haeKaikki() {
+	public List<Innovaatio> haeKaikki(int ryhmaId) {
 
-		String sql = "select id, nimi ,  aihe from innovaatio";
+		String sql = "select id, nimi ,  aihe from innovaatio where ryhmaId !=?";
+		Object[] parametrit = new Object[] { ryhmaId };
 		RowMapper<Innovaatio> mapper = new InnovaatioRowMapper();
-		List<Innovaatio> innovaatiot = jdbcTemplate.query(sql, mapper);
+		List<Innovaatio> innovaatiot = jdbcTemplate.query(sql, parametrit, mapper);
 
 		return innovaatiot;
 	}
@@ -129,11 +133,11 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 	public void talletaOpiskelija(Opiskelija o){
 		
 		
+		Kryptaaja kryptaaja=new Kryptaaja();
 		
 		
 		
-		
-		final String sql = "insert into opiskelija(etunimi, sukunimi, opiskelijanumero, email, ryhmaId, valtuusId) values(?,?,?,?,?,?)";
+		final String sql = "insert into opiskelija(etunimi, sukunimi, opiskelijanumero, email, ryhmaId, valtuusId, enabled, opiskelijanumeroKryptattuna) values(?,?,?,?,?,?,?,?)";
 
 		// anonyymi sis‰luokka tarvitsee vakioina v‰litett‰v‰t arvot,
 		// jotta roskien keruu onnistuu t‰m‰n metodin suorituksen p‰‰ttyess‰.
@@ -142,7 +146,9 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 		final String opiskelijanumero=o.getOpiskelijanumero();
 		final String email=o.getEmail();
 		final int ryhmaId=o.getRyhmaId();
-		final int valtuusId=1;
+		final int valtuusId=2;
+		final int enabled=1;
+		final String kryptaus=kryptaaja.opiskelijanumeroKryptattuna(opiskelijanumero);
 
 		// jdbc pist‰‰ generoidun id:n t‰nne talteen
 		KeyHolder idHolder = new GeneratedKeyHolder();
@@ -160,6 +166,8 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 				ps.setString(4, email);
 				ps.setInt(5, ryhmaId);
 				ps.setInt(6, valtuusId);
+				ps.setInt(7, enabled);
+				ps.setString(8, kryptaus);
 				return ps;
 			}
 		}, idHolder);
@@ -187,8 +195,8 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 			
 			
 			 
-			 String sql = "select etunimi, sukunimi, opiskelijanumero, email, ryhmaId, id from opiskelija where id = ?";
-				Object[] parametrit = new Object[] { id };
+			 String sql = "select etunimi, sukunimi, opiskelijanumero, email, ryhmaId, id from opiskelija where id = ? ";
+				Object[] parametrit = new Object[] { id,  };
 				RowMapper<Opiskelija> mapper = new OpiskelijaRowMapper();
 
 				Opiskelija o;
@@ -206,6 +214,31 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 		}
 		
 		
+		
+		
+	public Opiskelija haeOpiskelija(String email)	
+	{
+			
+			
+			
+			 
+			 String sql = "select * from opiskelija where  email=?";
+				Object[] parametrit = new Object[] { email };
+				RowMapper<Opiskelija> mapper = new OpiskelijaRowMapper();
+
+				Opiskelija o;
+				try {
+					o = jdbcTemplate.queryForObject(sql, parametrit, mapper);
+				} catch (IncorrectResultSizeDataAccessException e) {
+					throw new EiLoydyPoikkeus(e);
+				}
+			
+			
+			
+			
+		return o;
+			
+		}
 
 
 	

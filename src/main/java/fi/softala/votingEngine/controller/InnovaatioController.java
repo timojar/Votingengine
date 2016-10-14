@@ -5,6 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,9 +42,15 @@ public class InnovaatioController {
 
 	@RequestMapping(value = "innovaatiot", method = RequestMethod.GET)
 	public ModelAndView getdata() {
+		
+		
+		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+		String email=auth.getName();
+		Opiskelija o=innovaatiodao.haeOpiskelija(email);
+		int ryhmaId=o.getRyhmaId();
 
 		ModelAndView model = new ModelAndView("inn/listaus");
-		List<Innovaatio> innovaatiot = innovaatiodao.haeKaikki();
+		List<Innovaatio> innovaatiot = innovaatiodao.haeKaikki(ryhmaId);
 		model.addObject("innot", innovaatiot);
 
 		return model;
