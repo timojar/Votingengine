@@ -2,6 +2,7 @@ package fi.softala.votingEngine.controller;
 
 
 
+import javax.inject.Inject;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import fi.softala.votingEngine.bean.Opiskelija;
+import fi.softala.votingEngine.dao.opiskelija.OpiskelijaDao;
 
 @Controller
 
@@ -23,11 +25,38 @@ import fi.softala.votingEngine.bean.Opiskelija;
 @SessionAttributes("opiskelija")
 public class OpiskelijaController {
 	
+@Inject	
+private OpiskelijaDao dao;	
 	
+
+
+
+
+
+
+	
+	public OpiskelijaDao getDao() {
+	return dao;
+}
+
+
+public void setDao(OpiskelijaDao dao) {
+	this.dao = dao;
+}
+
+
+	@RequestMapping(value="uusivierailija", method=RequestMethod.GET)
+	public String getCreateForm1(Model model) {
+		Opiskelija o = new Opiskelija();
+		
+		
+		model.addAttribute("opiskelija", o);
+		return "opp/createformVisitor";
+	}
 	
 	
 	@RequestMapping(value="uusi", method=RequestMethod.GET)
-	public String getCreateForm(Model model) {
+	public String getCreateForm2(Model model) {
 		Opiskelija o = new Opiskelija();
 		
 		
@@ -38,7 +67,7 @@ public class OpiskelijaController {
 	
 	
 	@RequestMapping(value="uusi", method=RequestMethod.POST)
-	public String create( @ModelAttribute(value="opiskelija") @Valid Opiskelija o, BindingResult result) {
+	public String create1( @ModelAttribute(value="opiskelija") @Valid Opiskelija o, BindingResult result) {
 		String polku="redirect:/innot/uusi";
 		
 		if (result.hasErrors()) {
@@ -55,6 +84,30 @@ public class OpiskelijaController {
 	
 	
 	
+	
+	@RequestMapping(value="uusivierailija", method=RequestMethod.POST)
+	public String create2( @ModelAttribute(value="opiskelija") @Valid Opiskelija opiskelija, BindingResult result) {
+		String polku="vahvistus/vierailija";
+		
+		if (result.hasErrors()) {
+			polku="opp/createformVisitor";
+		} 
+		
+		else{
+			
+		dao.talletaOpiskelija(opiskelija);
+	
+		}
+		return polku;
+	}
+	
+	
+	@RequestMapping(value="etusivulle", method=RequestMethod.GET)
+	 public String index() {
+	    	
+		   
+		        return "redirect:/";
+		}
 	
 	
 	

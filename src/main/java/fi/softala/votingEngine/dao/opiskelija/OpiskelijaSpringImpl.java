@@ -3,11 +3,15 @@ package fi.softala.votingEngine.dao.opiskelija;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
+
+
+
 
 import javax.inject.Inject;
 
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
+
+
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -17,9 +21,12 @@ import org.springframework.jdbc.support.KeyHolder;
 
 
 
+import org.springframework.stereotype.Repository;
+
 import fi.softala.votingEngine.bean.Opiskelija;
 import fi.softala.votingEngine.dao.EiLoydyPoikkeus;
-
+import fi.softala.votingEngine.util.Kryptaaja;
+@Repository
 public class OpiskelijaSpringImpl implements OpiskelijaDao{
 	
 	
@@ -39,14 +46,6 @@ public class OpiskelijaSpringImpl implements OpiskelijaDao{
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	public List<Opiskelija> haeKaikkiOpiskelijat(){
-
-		String sql = "select id, etunimi, sukunimi , email, opiskelijanumero from opiskelija";
-		RowMapper<Opiskelija> mapper = new OpiskelijaRowMapper();
-		List<Opiskelija> opiskelijat = jdbcTemplate.query(sql, mapper);
-
-		return opiskelijat;
-	}
 	
 	
 	
@@ -59,15 +58,18 @@ public class OpiskelijaSpringImpl implements OpiskelijaDao{
 		
 		
 		
-		final String sql = "insert into opiskelija(etunimi, sukunimi, opiskelijanumero, email, innovaatioId) values(?,?,?,?,?)";
+		final String sql = "insert into opiskelija(etunimi, sukunimi, opiskelijanumero, email, ryhmaId, valtuusId, enabled, opiskelijanumeroKryptattuna) values(?,?,?,?,?,?,?,?)";
 
 		// anonyymi sis‰luokka tarvitsee vakioina v‰litett‰v‰t arvot,
 		// jotta roskien keruu onnistuu t‰m‰n metodin suorituksen p‰‰ttyess‰.
+		Kryptaaja kryptaaja=new Kryptaaja();
 		final String etunimi = o.getEtunimi();
 		final String sukunimi = o.getSukunimi();
 		final String opiskelijanumero=o.getOpiskelijanumero();
 		final String email=o.getEmail();
-		final int innovaatioId=o.getInnovaatio().getId();
+		final int ryhmaId=1;
+		final int valtuusId=1;
+		final String kryptaus=kryptaaja.opiskelijanumeroKryptattuna(opiskelijanumero);
 
 		// jdbc pist‰‰ generoidun id:n t‰nne talteen
 		KeyHolder idHolder = new GeneratedKeyHolder();
@@ -83,7 +85,10 @@ public class OpiskelijaSpringImpl implements OpiskelijaDao{
 				ps.setString(2, sukunimi);
 				ps.setString(3, opiskelijanumero);
 				ps.setString(4, email);
-				ps.setInt(5, innovaatioId);
+				ps.setInt(5, ryhmaId);
+				ps.setInt(6, valtuusId);
+				ps.setInt(7, 1);
+				ps.setString(8, kryptaus);
 				return ps;
 			}
 		}, idHolder);
@@ -100,30 +105,7 @@ public class OpiskelijaSpringImpl implements OpiskelijaDao{
 	
 	
 	
-	public Opiskelija etsiOpiskelija(int id){
-		
-		
-		
-		 
-		 String sql = "select etunimi, sukunimi, opiskelijanumero, email, innovaatioId, id from opiskelija where id = ?";
-			Object[] parametrit = new Object[] { id };
-			RowMapper<Opiskelija> mapper = new OpiskelijaRowMapper();
-
-			Opiskelija o;
-			try {
-				o = jdbcTemplate.queryForObject(sql, parametrit, mapper);
-			} catch (IncorrectResultSizeDataAccessException e) {
-				throw new EiLoydyPoikkeus(e);
-			}
-		
-		
-		
-		
-	return o;
-		
-	}
 	
-		
 	
 	
 	

@@ -73,8 +73,10 @@
 	<!-- SPRING SECURITY -->
 
 	<sec:http auto-config="true" use-expressions="true">
-		
+		<sec:intercept-url pattern="/innot/innovaatio*" access="isAuthenticated()" />
 		<sec:intercept-url pattern="/innot/innovaatiot**" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/innot/innovaatiot**" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/innot/innovaatiot**" access="hasRole('ROLE_USER')" />
 		<sec:intercept-url pattern="/innot/innovaatiot*" access="isAuthenticated()" />
 		
 		<sec:intercept-url pattern="/*" access="permitAll" />

@@ -18,7 +18,7 @@ public abstract Opiskelija etsiOpiskelija(int id);
 public abstract  Opiskelija haeOpiskelija(String email);
 
 
-public abstract void talletaOpiskelija(Opiskelija o);
+public abstract String  talletaOpiskelija(Opiskelija o);
 
 public abstract int talletaRyhma(Ryhma ryhma);
 	

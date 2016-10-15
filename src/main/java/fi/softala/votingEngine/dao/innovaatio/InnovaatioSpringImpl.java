@@ -130,7 +130,7 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 	
 	
 
-	public void talletaOpiskelija(Opiskelija o){
+	public String talletaOpiskelija(Opiskelija o){
 		
 		
 		Kryptaaja kryptaaja=new Kryptaaja();
@@ -177,8 +177,8 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 		o.setId(idHolder.getKey().intValue());	
 		
 		
-		
-		
+		 
+		return kryptaus;
 		
 	}
 	

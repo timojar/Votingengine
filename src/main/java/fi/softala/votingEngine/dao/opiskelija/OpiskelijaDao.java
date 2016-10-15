@@ -10,11 +10,11 @@ public interface OpiskelijaDao {
 	
 	
 	
-	public abstract List<Opiskelija> haeKaikkiOpiskelijat();
+	
 
 	public  abstract void talletaOpiskelija(Opiskelija opiskelija);
 
-	public abstract Opiskelija etsiOpiskelija(int id);
+	
 			
 	
 	

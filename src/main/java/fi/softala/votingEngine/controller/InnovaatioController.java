@@ -5,6 +5,11 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import fi.softala.votingEngine.bean.Innovaatio;
 import fi.softala.votingEngine.bean.Opiskelija;
 import fi.softala.votingEngine.bean.Ryhma;
@@ -25,7 +31,8 @@ import fi.softala.votingEngine.dao.innovaatio.InnovaatioDao;
 
 @Controller
 @RequestMapping(value = "/innot")
-@SessionAttributes("opiskelija")
+@SessionAttributes({"opiskelija","inno"})
+
 
 public class InnovaatioController {
 
@@ -51,11 +58,34 @@ public class InnovaatioController {
 
 		ModelAndView model = new ModelAndView("inn/listaus");
 		List<Innovaatio> innovaatiot = innovaatiodao.haeKaikki(ryhmaId);
+		model.addObject("opiskelija", o);
 		model.addObject("innot", innovaatiot);
+		model.addObject("inno", new Innovaatio());
 
 		return model;
 
 	}
+	
+	
+	
+	@RequestMapping(value = "innovaatiot", method = RequestMethod.POST)
+	public String toVote(@ModelAttribute(value = "inno")  Innovaatio innovaatio
+			){
+		
+		
+		System.out.println(innovaatio.getId()+"id");
+		
+		
+		
+		return "redirect:/aanet/aanestys";
+	}
+	
+	
+	
+	
+	
+	
+	
 
 	@RequestMapping(value = "uusi", method = RequestMethod.GET)
 	public String getCreateForm(Model model) {
@@ -89,27 +119,27 @@ public class InnovaatioController {
 			
 			int id = innovaatiodao.talletaInnovaatio(innovaatio);
 			
-			/* 
-			 * talletaRyhma(innovaatio)-metodin parametrinä on innovaatio,
-			 *  koska ryhman nimi tulee olemaan sama kuin innovaation nimi
-			 */
-			
+			Logger log = LoggerFactory.getLogger(InnovaatioController.class);
 			
 			
 			o.setRyhmaId(ryhmaId);
 			innovaatio.setId(id);
 			o.setInnovaatio(innovaatio);
+			String email=o.getEmail();
+			String tunniste=innovaatiodao.talletaOpiskelija(o);
 			
-			innovaatiodao.talletaOpiskelija(o);
+			Authentication authentication =  new UsernamePasswordAuthenticationToken(email, tunniste);
 			
+			log.debug("Logging in with {}", authentication.getPrincipal());
+			SecurityContextHolder.getContext().setAuthentication(authentication);
 			
-			return "redirect:/innot/"+o.getId();
+			return "redirect:/innot/innovaatio"+o.getId();
 		}
 
 		
 	}
 
-	@RequestMapping(value = "{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "innovaatio"+"{id}", method = RequestMethod.GET)
 	public ModelAndView getView(@PathVariable Integer id) {
 		
 		
@@ -125,5 +155,15 @@ public class InnovaatioController {
 		
 		return model;
 	}
+	
+	
+	
+	
+	
+	
+	
+	 
+	 
+	
 
 }
