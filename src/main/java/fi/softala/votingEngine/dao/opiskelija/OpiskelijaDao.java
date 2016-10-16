@@ -13,6 +13,8 @@ public interface OpiskelijaDao {
 	
 
 	public  abstract void talletaOpiskelija(Opiskelija opiskelija);
+	
+	public abstract Opiskelija haeOpiskelija(String email);
 
 	
 			

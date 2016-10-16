@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 
+
 import fi.softala.votingEngine.bean.Innovaatio;
 import fi.softala.votingEngine.bean.Opiskelija;
 import fi.softala.votingEngine.bean.Ryhma;
@@ -73,7 +74,7 @@ public class InnovaatioController {
 			){
 		
 		
-		System.out.println(innovaatio.getId()+"id");
+		
 		
 		
 		
@@ -127,23 +128,29 @@ public class InnovaatioController {
 			o.setInnovaatio(innovaatio);
 			String email=o.getEmail();
 			String tunniste=innovaatiodao.talletaOpiskelija(o);
+			ModelAndView model = new ModelAndView();
+			model.addObject("opiskelija", o);
 			
-			Authentication authentication =  new UsernamePasswordAuthenticationToken(email, tunniste);
 			
-			log.debug("Logging in with {}", authentication.getPrincipal());
-			SecurityContextHolder.getContext().setAuthentication(authentication);
-			
-			return "redirect:/innot/innovaatio"+o.getId();
+			return "redirect:/innot/tarkista";
 		}
 
 		
 	}
 
-	@RequestMapping(value = "innovaatio"+"{id}", method = RequestMethod.GET)
-	public ModelAndView getView(@PathVariable Integer id) {
+
+	
+	
+	@RequestMapping( value = "hallitse",method = RequestMethod.GET)
+	public ModelAndView hallitseInnovaatiota() {
 		
 		
-		Opiskelija o=innovaatiodao.etsiOpiskelija(id);
+		Opiskelija o=dummyOpiskelija();
+	
+		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+		String email=auth.getName();
+		  o=innovaatiodao.haeOpiskelija(email);
+		
 		int ryhmaId=o.getRyhmaId();
 		Innovaatio innovaatio=innovaatiodao.etsiInnovaatio(ryhmaId);
 		
@@ -159,7 +166,85 @@ public class InnovaatioController {
 	
 	
 	
+	@RequestMapping( value = "tarkista",method = RequestMethod.GET)
+	public ModelAndView esiKatsele(@ModelAttribute(value = "opiskelija") Opiskelija o) {
+		
 	
+		
+		
+		ModelAndView model = new ModelAndView("inn/view");
+		
+		model.addObject("opiskelija1", o);
+		
+		return model;
+	}
+	
+	
+	
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public ModelAndView ulosKirjaudu() {
+
+		ModelAndView model=new ModelAndView("logout");
+		
+		
+		SecurityContextHolder.getContext().setAuthentication(null);
+		
+		return model;
+	}
+	
+	
+	
+	@RequestMapping(value="etusivulle", method=RequestMethod.GET)
+	 public String index() {
+	    	
+		   
+		        return "redirect:/";
+		}
+	
+	
+	
+	
+	
+	
+	
+	private Opiskelija dummyOpiskelija(){
+		
+		final String email="oletus@oletus";
+		final String etunimi="oletusnimi";
+		final String sukunimi="oletusnimi";
+		final String opiskelijanumero="00000";
+		final String nimi="00000";
+		final String aihe="00000";
+		
+	
+	Opiskelija o=new Opiskelija();
+	Innovaatio i=dummyInnovaatio();
+	o.setEmail(email);
+	o.setEtunimi(etunimi);
+	o.setSukunimi(sukunimi);
+	o.setOpiskelijanumero(opiskelijanumero);
+	
+	
+	return o;
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	private Innovaatio dummyInnovaatio(){
+		
+		Innovaatio i=new Innovaatio();		
+		final String nimi="00000";
+		final String aihe="00000";
+		i.setAihe(aihe);
+		i.setNimi(nimi);
+		
+		return i;
+	}
 	
 	
 	 

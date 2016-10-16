@@ -38,9 +38,7 @@
     <div class="nav-wrapper blue lighten-1">
       <a href="#!" class="brand-logo center">Innovaatio</a>
       <ul class="left hide-on-med-and-down">
-        <li><a href="opiskelijat/uusi">Tilaisuuteen ilmoittautuminen</a></li>
-        <li><a href="innot/uusi">Oma innovaatio</a></li>
-        <li class="active"><a href="innot/innovaatiot">Äänestämään</a></li>
+      <li><a href="innot/etusivulle">Front page</a></li>
       </ul>
     </div>
   </nav>

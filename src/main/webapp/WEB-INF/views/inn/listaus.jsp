@@ -81,7 +81,7 @@ response.setDateHeader ("Expires", -1);
         
      
          
-          
+  <p><a href="../j_spring_security_logout" > Kirjaudu ulos</a></p>         
      
             
  <table>
@@ -136,7 +136,7 @@ response.setDateHeader ("Expires", -1);
 <br>
 <br>
 <br>
- <p><a href="../j_spring_security_logout" > Kirjaudu ulos</a></p>
+
 
  <footer class="page-footer blue lighten-1">
           <div class="container">

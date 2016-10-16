@@ -36,9 +36,9 @@
     <div class="nav-wrapper blue lighten-1">
       <a href="#!" class="brand-logo center">Innovaatio</a>
       <ul class="left hide-on-med-and-down">
-        <li><a href="opiskelijat/uusivierailija">Tilaisuuteen ilmoittautuminen</a></li>
-        <li><a href="opiskelijat/uusi">Oma innovaatio</a></li>
-        <li class="active"><a href="innot/innovaatiot">Äänestämään</a></li>
+        <li><a href="opiskelijat/uusivierailija">The event registration</a></li>
+        <li><a href="opiskelijat/uusi">My innovation</a></li>
+        <li><a href="innot/innovaatiot">Vote</a></li>
       </ul>
     </div>
   </nav>
@@ -59,7 +59,7 @@
    
    <div id="sisalto">
  
- <h1>Innovaatio tilaisuus 2016</h1>
+ <h1>The innovation conference 2016</h1>
  
  
  
@@ -73,13 +73,13 @@
           <div class="card">
             <div class="card-image">
               <img src="resources/kuvat/niagarafalls.jpg">
-              <span class="card-title">Parempaan maailmaan</span>
+              <span class="card-title">For better world</span>
             </div>
             <div class="card-content">
-              <p>Tervetuloa vuoden 2016 innovaatiotilaisuuteen</p>
+              <p>Welcome to the innovation conference 2016</p>
             </div>
             <div class="card-action">
-              <a href="innot/innovaatiot">Tervetuloa äänestämään</a>
+              <a href="innot/innovaatiot">Welcome to vote</a>
             </div>
           </div>
         </div>

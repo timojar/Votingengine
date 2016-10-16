@@ -5,6 +5,9 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 
+import fi.softala.votingEngine.beanValidation.EmailDublicate;
+import fi.softala.votingEngine.beanValidation.Isokirjain;
+
 public class Opiskelija {
 	
 	
@@ -13,8 +16,10 @@ private int ryhmaId;
 private Innovaatio innovaatio;
 
 @Pattern(regexp="a\\d{7}") private String opiskelijanumero;
-@Size(min=1, max=50) private String etunimi;
-@Size(min=1, max=150) private String sukunimi;
+@Isokirjain @Size(min=1, max=50) private String etunimi;
+@Isokirjain @Size(min=1, max=150) private String sukunimi;
+
+@EmailDublicate
 @Email @Size(min=1) private String email;
 
 
