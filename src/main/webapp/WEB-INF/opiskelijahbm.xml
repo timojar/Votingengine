@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+ <!DOCTYPE hibernate-mapping PUBLIC  
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+      
+    <hibernate-mapping>  
+    <class name="fi.softala.votingEngine.bean.Opiskelija" table="emp558">  
+              <id name="id">  
+              <generator class="assigned"></generator>  
+              </id>  
+                
+              <property name="etunimi"></property>  
+              <property name="sukunimi"></property>  
+              <property name="email"></property>
+              <property name="opiskelijanumero"></property>
+    </class>  
+                
+    </hibernate-mapping> 

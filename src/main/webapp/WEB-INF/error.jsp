@@ -48,14 +48,14 @@
 <br>
 	<br>
 	<br>
-<h1>You are logged out completely</h1>
+<h3>You are not authorized to login this website</h3>
 
 	<br>
 	<br>
 	<br>
 	<br>
 
-<h4>This <a href="etusivulle"> link </a> will  direct you back to the main page</h4>
+<h6>This <a href="logout"> link </a> will  direct you back to the main page</h6>
  
 </div>
 <br>

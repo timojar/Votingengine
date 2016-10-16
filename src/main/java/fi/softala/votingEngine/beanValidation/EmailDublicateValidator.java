@@ -5,8 +5,8 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import fi.softala.votingEngine.bean.Opiskelija;
-import fi.softala.votingEngine.dao.innovaatio.InnovaatioDao;
-import fi.softala.votingEngine.dao.innovaatio.InnovaatioSpringImpl;
+
+import fi.softala.votingEngine.dao.opiskelija.OpiskelijaDao;
 
 
 
@@ -14,14 +14,22 @@ public class EmailDublicateValidator implements
 ConstraintValidator<EmailDublicate, String>{
 
 
+	@Inject
 	
-	
-	
+	private OpiskelijaDao dao;
 
 	
 	
 	
 	
+	public OpiskelijaDao getDao() {
+		return dao;
+	}
+
+	public void setDao(OpiskelijaDao dao) {
+		this.dao = dao;
+	}
+
 	public void initialize(EmailDublicate emailDublicate) {
 
 	}
@@ -30,13 +38,13 @@ ConstraintValidator<EmailDublicate, String>{
 
 		Opiskelija o=new Opiskelija();
 		
-		InnovaatioDao innovaatiodao=new InnovaatioSpringImpl();
+		
 		
 		
 		String email=value;
 		boolean ehto=true;
 		try {
-			o=innovaatiodao.haeOpiskelija(email);
+			o=dao.haeOpiskelija(email);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
