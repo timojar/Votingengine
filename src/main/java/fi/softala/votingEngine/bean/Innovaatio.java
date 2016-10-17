@@ -2,6 +2,8 @@ package fi.softala.votingEngine.bean;
 
 import javax.validation.constraints.Size;
 
+import fi.softala.votingEngine.beanValidation.InnovatioNameExist;
+
 public class Innovaatio {
 	
 	
@@ -19,7 +21,7 @@ public void setRyhmaId(int ryhmaId) {
 	this.ryhmaId = ryhmaId;
 }
 
-private @Size(min= 1, max=50) String nimi;
+private @InnovatioNameExist @Size(min= 1, max=50) String nimi;
 private @Size(min= 1, max=70)String  aihe;
 
 public int getId() {

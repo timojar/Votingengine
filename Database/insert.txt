@@ -1,0 +1,24 @@
+
+
+INSERT INTO
+
+
+ryhma 
+VALUES
+	
+(1,'vierailijat', 'vierailijat');
+	
+
+	
+
+
+INSERT INTO
+	valtuus 
+VALUES
+	
+(2,'ROLE_ADMIN'),
+	
+(1,'ROLE_USER'),
+   
+ (3,'VOTED_USER');
+	

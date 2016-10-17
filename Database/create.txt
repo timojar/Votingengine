@@ -1,29 +1,115 @@
 
 
+
+
 Create table 
-innovaatio
+ryhma
+
 (
-id integer NOT NULL AUTO_INCREMENT primary key  ,
+id int NOT NULL AUTO_INCREMENT primary key  ,
+
 
 nimi  varchar(30) NOT NULL,
 
-aihe varchar(50) NOT NULL);
+tyyppi varchar(30) NOT NULL)
+DEFAULT CHARSET=utf8;
+
+
+
+
+
+
+Create table 
+valtuus
+
+(
+id integer NOT NULL AUTO_INCREMENT primary key, 
+
+
+rooli  varchar(30) NOT NULL)
+DEFAULT CHARSET=utf8;
+
+
+
+
+
+Create table 
+innovaatio
+
+(
+id integer NOT NULL AUTO_INCREMENT primary key,
+
+ryhmaId integer NOT NULL,
+
+
+nimi  varchar(30) NOT NULL,
+
+
+aihe varchar(50) NOT NULL,
+
+foreign key (ryhmaId) references ryhma(id))
+DEFAULT CHARSET=utf8;
+
+
 
 
 
 
 Create table opiskelija
+
 (
 id integer NOT NULL primary key AUTO_INCREMENT,
 
+
+ryhmaId integer NOT NULL,
+
+
+valtuusId integer NOT NULL,
+
+enabled tinyint NOT NULL,
+
+
 etunimi varchar(50) NOT NULL,
+
 
 sukunimi varchar(150) NOT NULL,
 
+
 email varchar(200) NOT NULL,
 
-innovaatioId integer NOT NULL,
+
+opiskelijanumeroKryptattuna varchar(300),
+
 
 opiskelijanumero char(8),
 
-foreign key (innovaatioId) references innovaatio(id) )
+
+
+foreign key (ryhmaId) references ryhma(id),
+
+foreign key (valtuusId) references valtuus(id) )
+
+DEFAULT CHARSET=utf8;
+
+
+
+
+create table aani
+(
+
+id int NOT NULL AUTO_INCREMENT primary key, 
+
+opiskelijaId integer not null,
+
+innoId integer not null,
+
+foreign key(opiskelijaId) references opiskelija(id),
+
+foreign key(innoId) references innovaatio(id)
+
+)
+
+
+
+
+DEFAULT CHARSET=utf8;

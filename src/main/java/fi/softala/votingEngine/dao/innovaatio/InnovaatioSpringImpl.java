@@ -23,6 +23,8 @@ import org.springframework.stereotype.Repository;
 
 
 
+
+
 import fi.softala.votingEngine.bean.Innovaatio;
 import fi.softala.votingEngine.bean.Opiskelija;
 import fi.softala.votingEngine.bean.Ryhma;
@@ -289,6 +291,39 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 	
 	
 	
+	
+	
+	
+	
+	public Innovaatio tarkistaInnovaatio(String nimi){
+		
+		
+		
+		
+		
+		
+		
+		String sql = "select nimi, aihe, id from innovaatio where nimi = ?";
+		Object[] parametrit = new Object[] { nimi };
+		RowMapper<Innovaatio> mapper = new InnovaatioRowMapper();
+
+		Innovaatio i;
+		try {
+			i = jdbcTemplate.queryForObject(sql, parametrit, mapper);
+		} catch (IncorrectResultSizeDataAccessException e) {
+			throw new EiLoydyPoikkeus(e);
+		}
+		
+		
+		
+		return i;
+		
+		
+	}
+	
+	
+	
+
 		
 		
 	

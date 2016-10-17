@@ -14,6 +14,9 @@ public abstract List<Innovaatio> haeKaikki(int ryhmaId);
 public  abstract int talletaInnovaatio(Innovaatio innovaatio);
 
 public abstract Innovaatio etsiInnovaatio(int ryhmaId);
+
+public abstract Innovaatio tarkistaInnovaatio(String nimi);
+
 public abstract Opiskelija etsiOpiskelija(int id);
 public abstract  Opiskelija haeOpiskelija(String email);
 
