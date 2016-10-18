@@ -19,6 +19,10 @@ ConstraintValidator<Isokirjain, String>{
 	}
 
 	public boolean isValid(String value, ConstraintValidatorContext context) {
+		if (value == null || value.length() == 0) {
+			return true;
+		}
+		
 		
 		String compare=value.charAt(0)+"";
 		String letter=value.charAt(0)+"";

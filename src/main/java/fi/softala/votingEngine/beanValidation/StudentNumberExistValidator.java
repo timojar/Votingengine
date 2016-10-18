@@ -38,6 +38,11 @@ ConstraintValidator<StudentNumberExist, String>{
 		}
 
 		public boolean isValid(String opiskelijanumero, ConstraintValidatorContext context) {
+			if (opiskelijanumero == null || opiskelijanumero.length() == 0) {
+				return true;
+			}
+			
+			
 			Opiskelija o=new Opiskelija();
 			
 			try {o=dao.tarkistaOpiskelija(opiskelijanumero);

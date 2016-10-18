@@ -36,7 +36,18 @@ public void setDao(OpiskelijaDao dao) {
 	}
 
 	public boolean isValid(String email, ConstraintValidatorContext context) {
+		
+		if (email == null || email.length() == 0) {
+			return true;
+		}
+		
+		
+		
+		
 		Opiskelija o=new Opiskelija();
+		
+		
+		
 		
 		try {o=dao.haeOpiskelija(email);
 			

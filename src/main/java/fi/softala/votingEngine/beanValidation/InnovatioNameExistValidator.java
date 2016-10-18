@@ -34,6 +34,13 @@ public void setDao(InnovaatioDao dao) {
 	}
 
 	public boolean isValid(String nimi, ConstraintValidatorContext context) {
+		
+		
+		if (nimi == null || nimi.length() == 0) {
+			return true;
+		}
+		
+		
 		Innovaatio i=new Innovaatio();
 		
 		try {i=dao.tarkistaInnovaatio(nimi);
