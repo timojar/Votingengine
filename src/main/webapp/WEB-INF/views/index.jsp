@@ -39,6 +39,7 @@
         <li><a href="opiskelijat/uusivierailija">The event registration</a></li>
         <li><a href="opiskelijat/uusi">My innovation</a></li>
         <li><a href="innot/innovaatiot">Vote</a></li>
+        <li><a href="aanet/tulokset">Results</a></li>
       </ul>
     </div>
   </nav>

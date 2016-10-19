@@ -3,16 +3,19 @@ package fi.softala.votingEngine.dao.aani;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import fi.softala.votingEngine.bean.Aani;
+
 
 @Repository
 public class AaniSpringImpl implements DaoAani {
@@ -84,6 +87,19 @@ public void muutaoikeuksia(int opiskelijaId){
 
 	
 	
+}
+
+
+
+
+public List<Aani> listaaTulokset() {
+
+	String sql = "select nimi, aihe, count(innoId) as lkm FROM aani  join innovaatio on innovaatio.id= aani.innoId group by nimi";
+	
+	RowMapper<Aani> mapper = new AaniRowMapper();
+	List<Aani> aanet = jdbcTemplate.query(sql, mapper);
+
+	return aanet;
 }
 
 

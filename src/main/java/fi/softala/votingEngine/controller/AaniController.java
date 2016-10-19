@@ -1,5 +1,7 @@
 package fi.softala.votingEngine.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.validation.Valid;
 
@@ -54,6 +56,20 @@ public ModelAndView toFrontpage(@ModelAttribute(value = "inno") Innovaatio innov
 	ModelAndView model=new ModelAndView("redirect:/");
 	
 	
+	
+	return model;
+	
+}
+
+
+@RequestMapping(value = "tulokset", method = RequestMethod.GET)
+public ModelAndView listaa(){
+	
+	
+	List<Aani>aanet=dao.listaaTulokset();
+	ModelAndView model=new ModelAndView("inn/results");
+	
+	model.addObject("aanet", aanet);
 	
 	return model;
 	
