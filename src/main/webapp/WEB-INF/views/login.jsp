@@ -43,19 +43,21 @@
     </div>
   </nav>
 
+<div id="sisalto">
+
+<h1>Login</h1>
 
 
-<h1>KIRJAUDU SISÄÄN</h1>
 
 	<c:if test="${not empty loginerror}">
-		<p class="Error">Sisäänkirjautuminen epäonnistui. Käyttäjätunnus tai salasana on syötetty väärin.</p>
+		<p class="Error">Login failed. Username or password is entered incorrectly.</p>
 	</c:if>
 
 	<c:if test="${not empty loggedout}">
-		<p class="Info">Uloskirjautuminen onnistui</p>
+		<p class="Info">Logout successful</p>
 	</c:if>
 	
-
+</div>
 
 
 

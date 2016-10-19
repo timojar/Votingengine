@@ -13,7 +13,7 @@ response.setDateHeader ("Expires", -1);
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+<head> 
 
 <title>Results</title>
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
@@ -46,14 +46,13 @@ response.setDateHeader ("Expires", -1);
     <div class="nav-wrapper blue lighten-1">
       <a href="#!" class="brand-logo center">Logo</a>
       <ul class="left hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li class="active"><a href="collapsible.html">JavaScript</a></li>
+        
+        <li class="active"><a href="../j_spring_security_logout" >Logout</a></li>
       </ul>
     </div>
   </nav>
 	
-
+  <p></p>   
 
  
 
@@ -69,7 +68,7 @@ response.setDateHeader ("Expires", -1);
    
    <div id="sisalto">
  
- <h1>Tulokset</h1>
+ <h1>Results</h1>
  
  
  
@@ -81,7 +80,7 @@ response.setDateHeader ("Expires", -1);
         
      
          
-  <p><a href="../j_spring_security_logout" > Kirjaudu ulos</a></p>         
+        
      
             
  <table>
