@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="UTF-8"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
 
@@ -48,17 +48,17 @@
   </nav>
 	
 <div id="kielet">
-<div class="chip"><a href="#">
+<div class="chip"><a href="?lang=fi">
     <img src="resources/css/flag-icon-css-master/flags/1x1/fi.svg" alt="Contact Person">
     Suomi</a>
   </div>
-  <div class="chip">
+  <div class="chip"><a href="?lang=en">
     <img src="resources/css/flag-icon-css-master/flags/1x1/gb.svg" alt="Contact Person">
-    English
+    English</a>
   </div>
- <div class="chip">
+ <div class="chip"><a href="?lang=se">
     <img src="resources/css/flag-icon-css-master/flags/1x1/se.svg" alt="Contact Person">
-    Svenska
+    Svenska</a>
   </div> 
  </div> 
         
@@ -141,7 +141,7 @@
           </div>
           <div class="footer-copyright">
             <div class="container">
-            Â© 2014 Copyright Text
+            © 2014 Copyright Text
             <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
             </div>
           </div>

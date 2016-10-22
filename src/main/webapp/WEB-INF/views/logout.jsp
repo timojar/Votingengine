@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%> 
 <%@ page session="false"%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title><spring:message code="innovaatio.logout.title" /></title>
 
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -36,7 +37,7 @@
 	
 	 <nav>
     <div class="nav-wrapper blue lighten-1">
-      <a href="#!" class="brand-logo center">Innovaatio</a>
+      <a  class="brand-logo center">Innovation</a>
       <ul class="left hide-on-med-and-down">
       
       </ul>
@@ -55,7 +56,7 @@
 	<br>
 	<br>
 
-<h4>This <a href="etusivulle"> link </a> will  direct you back to the main page</h4>
+<h4><a href="etusivulle"><spring:message code="innovaatio.logout.link" /></a> <spring:message code="innovaatio.logout.text" /></h4>
  
 </div>
 <br>

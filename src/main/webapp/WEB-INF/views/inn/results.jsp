@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
 
 <%
 response.setHeader("Cache-Control","no-cache"); 
@@ -15,7 +16,7 @@ response.setDateHeader ("Expires", -1);
 <html>
 <head> 
 
-<title>Results</title>
+<title><spring:message code="innovaatio.results.title" /></title>
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <!--Import materialize.css-->
@@ -68,7 +69,7 @@ response.setDateHeader ("Expires", -1);
    
    <div id="sisalto">
  
- <h1>Results</h1>
+ <h1><spring:message code="innovaatio.results.heading" /></h1>
  
  
  
@@ -87,9 +88,9 @@ response.setDateHeader ("Expires", -1);
  
  <thead>
           <tr>
-              <th data-field="id">Name</th>
-              <th data-field="name">Topic</th>
-              <th data-field="price">Votes</th>
+              <th data-field="id"><spring:message code="innovaatio.results.name" /></th>
+              <th data-field="name"><spring:message code="innovaatio.results.topic" /></th>
+              <th data-field="price"><spring:message code="innovaatio.results.votes" /></th>
           </tr>
         </thead>
  

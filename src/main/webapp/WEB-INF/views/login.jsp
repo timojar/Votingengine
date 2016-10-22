@@ -2,13 +2,14 @@
     pageEncoding="ISO-8859-1"%>
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>  
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
 <%@ page session="false"%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title><spring:message code="innovaatio.login.title" /></title>
 
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -36,25 +37,25 @@
 	
 	 <nav>
     <div class="nav-wrapper blue lighten-1">
-      <a href="#!" class="brand-logo center">Innovaatio</a>
+      <a class="brand-logo center">Innovation</a>
       <ul class="left hide-on-med-and-down">
-      <li><a href="innot/etusivulle">Front page</a></li>
+      <li><a href="innot/etusivulle"><spring:message code="innovaatio.login.frontpage" /></a></li>
       </ul>
     </div>
   </nav>
 
 <div id="sisalto">
 
-<h1>Login</h1>
+<h1><spring:message code="innovaatio.login.heading" /></h1>
 
 
 
 	<c:if test="${not empty loginerror}">
-		<p class="Error">Login failed. Username or password is entered incorrectly.</p>
+		<p class="Error"><spring:message code="innovaatio.login.loginerror" /></p>
 	</c:if>
 
 	<c:if test="${not empty loggedout}">
-		<p class="Info">Logout successful</p>
+		<p class="Info"><spring:message code="innovaatio.login.logoutsuccessful" /></p>
 	</c:if>
 	
 </div>
@@ -75,7 +76,8 @@
       
         
         <div class="input-field col s12">
-        <label for="text">Email</label>
+        <label for="text"><spring:message code="innovaatio.login.email" />
+</label>
          <br>
         
           <input id="text"  class="validate" type='text' name='j_username'>
@@ -85,7 +87,8 @@
       <div class="row">
         <div class="input-field col s12">
         
-         <label for="text">Studentnumber</label>
+         <label for="text"><spring:message code="innovaatio.login.studentnumber" />
+</label>
          <br>
           <input id="text" type="text" class="validate" name='j_password' >
          
@@ -99,7 +102,7 @@
       <br>
        <br>
         <br>
-      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <button class="btn waves-effect waves-light" type="submit" name="action"><spring:message code="innovaatio.login.button" />
     <i class="material-icons right">send</i>
   </button>
         
