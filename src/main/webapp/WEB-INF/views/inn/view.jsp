@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title><spring:message code="innovaatio.view.title" /></title>
 
 <link type="text/css" rel="stylesheet" href="../resources/css/materialize.min.css" 
 	media="screen,projection" />
@@ -22,7 +24,7 @@
     <div class="nav-wrapper blue lighten-1">
       <a href="#!" class="brand-logo center">Logo</a>
       <ul class="left hide-on-med-and-down">
-       
+       <li><a href="../j_spring_security_logout" > <spring:message code="innovaatio.listaus.link" /></a></li> 
       </ul>
     </div>
   </nav>
@@ -30,62 +32,6 @@
 <div id="sisalto">
 
 
-<h1>Tiedot</h1>
-
-
-</div>
-
-<br>
-<br>
-<br>
-<br>
- <table class="centered">
-        <thead>
-          <tr>
-              <th data-field="id">Studennumber</th>
-              <th data-field="name">Firstname</th>
-              <th data-field="price">Lastname</th>
-              <th data-field="price">Email</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td><c:out value="${opiskelija1.opiskelijanumero }"></c:out></td>
-            <td><c:out value="${opiskelija1.etunimi }"></c:out></td>
-            <td><c:out value="${opiskelija1.sukunimi }"></c:out></td>
-            <td><c:out value="${opiskelija1.email }"></c:out></td>
-          </tr>
-  
-
-        </tbody>
-      </table>
-
-<br>
-<br>
-<br>
-<br>
-
-
-<table >
-        <thead>
-          <tr>
-              <th data-field="id">Name of the Innovation</th>
-              
-             
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td><c:out value="${opiskelija1.innovaatio.nimi}"></c:out></td>
-            <td><c:out value="${opiskelija1.innovaatio.aihe}"></c:out></td>
-            
-          </tr>
-  
-
-        </tbody>
-      </table>
 
 
 
@@ -94,8 +40,41 @@
 <br>
 <br>
 <br>
+<h1><spring:message code="innovaatio.view.heading" /></h1>
 
- <p><a href="logout" > Kirjaudu ulos</a></p>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+  	<h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.studentnumber" />:</span></h5>
+    <h5 class="left--align"><c:out value="${opiskelija1.opiskelijanumero }"></c:out></h5>
+  	<h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.firstname" />:</span></h5>
+    <h5 class="left--align"><c:out value="${opiskelija1.etunimi }"></c:out></h5>
+  	<h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.lastname" />:</span></h5>
+    <h5 class="left--align"><c:out value="${opiskelija1.sukunimi }"></c:out></h5>
+    <h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.email" />:</span></h5>
+    <h5 class="left--align"><c:out value="${opiskelija1.email }"></c:out></h5>
+    
+    <br>
+<br>
+<br>
+    
+    <h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.name" />:</span></h5>
+    <h5 class="left--align"><c:out value="${opiskelija1.innovaatio.nimi}"></c:out></h5>
+    <h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.topic" />:</span></h5>
+    <h5 class="left--align"><c:out value="${opiskelija1.innovaatio.aihe}"></c:out></h5>
+  </div>
+        
+
+
+<br>
+<br>
+<br>
+<br>
+
 
 
 <footer class="page-footer blue lighten-1">

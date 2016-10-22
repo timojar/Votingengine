@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,7 +21,7 @@
 
 
 
-<title>Vahvistus</title>
+<title><spring:message code="innovaatio.vahvistus.title" /></title>
 </head>
 <body>
 
@@ -32,11 +34,9 @@
 	
 	 <nav>
     <div class="nav-wrapper blue lighten-1">
-      <a href="#!" class="brand-logo center">Logo</a>
+      <a  class="brand-logo center">Logo</a>
       <ul class="left hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li class="active"><a href="collapsible.html">JavaScript</a></li>
+        
       </ul>
     </div>
   </nav>
@@ -44,19 +44,19 @@
 
 <div id="sisalto">
 
-<h1>Vahvista</h1>
+<h1><spring:message code="innovaatio.vahvistus.heading" /></h1>
 <br>
 <br>
 <br>
 <br>
-<h5>Haluatko vahvistaa äänen?</h5>
+<h5><spring:message code="innovaatio.vahvistus.text" /></h5>
 <br>
 <br>
 <br>
 <br>
 
-<a href="vahvista" class="waves-effect waves-light btn-large">Vahvista</a>
-<a href="" class="waves-effect waves-light btn-large">Älä vahvista</a>
+<a href="vahvista" class="waves-effect waves-light btn-large"><spring:message code="innovaatio.vahvistus.buttonyes" /></a>
+<a href="peru" class="waves-effect waves-light btn-large"><spring:message code="innovaatio.vahvistus.buttonno" /></a>
 
 
 

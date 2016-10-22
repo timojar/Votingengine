@@ -3,6 +3,7 @@
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>  
 <%@ page session="false"%>
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -36,7 +37,7 @@
 	
 	 <nav>
     <div class="nav-wrapper blue lighten-1">
-      <a href="#!" class="brand-logo center">Innovaatio</a>
+      <a class="brand-logo center">Innovation</a>
       <ul class="left hide-on-med-and-down">
       
       </ul>
@@ -48,14 +49,14 @@
 <br>
 	<br>
 	<br>
-<h1>You are not authorized to login this website</h1>
+<h1><spring:message code="innovaatio.403.heading"/></h1>
 
 	<br>
 	<br>
 	<br>
 	<br>
 
-<h4>Please logout from your session from this <a href="logout"> link </a> </h4>
+<h4><spring:message code="innovaatio.403.text"/><a href="logout"><spring:message code="innovaatio.403.link"/></a> </h4>
  
 </div>
 <br>

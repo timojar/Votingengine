@@ -1,18 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 
-<title>Insert title here</title>
+<title><spring:message code="innovaatio.index.title"/></title>
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <!--Import materialize.css-->
 <link type="text/css" rel="stylesheet" href="resources/css/materialize.min.css" 
 	media="screen,projection" />
 	
-<link type="text/css" rel="stylesheet" href="resources/css/tyyli.css"> 	
+<link type="text/css" rel="stylesheet" href="resources/css/tyyli.css">
+<link type="text/css" rel="stylesheet" href="resources/css/flag-icon-css-master/css/flag-icon.css"> 	 	
 
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,18 +37,31 @@
 	
 	 <nav>
     <div class="nav-wrapper blue lighten-1">
-      <a href="#!" class="brand-logo center">Innovaatio</a>
+      <a class="brand-logo center">Innovation</a>
       <ul class="left hide-on-med-and-down">
-        <li><a href="opiskelijat/uusivierailija">The event registration</a></li>
-        <li><a href="opiskelijat/uusi">My innovation</a></li>
-        <li><a href="innot/innovaatiot">Vote</a></li>
-        <li><a href="aanet/tulokset">Results</a></li>
+        <li><a href="opiskelijat/uusivierailija"><spring:message code="innovaatio.index.nav.registration" /></a></li>
+        <li><a href="opiskelijat/uusi"><spring:message code="innovaatio.index.nav.myinnovation" /></a></li>
+        <li><a href="innot/innovaatiot"><spring:message code="innovaatio.index.nav.vote"/></a></li>
+        <li><a href="aanet/tulokset"><spring:message code="innovaatio.index.nav.results"/></a></li>
       </ul>
     </div>
   </nav>
 	
-
-
+<div id="kielet">
+<div class="chip"><a href="#">
+    <img src="resources/css/flag-icon-css-master/flags/1x1/fi.svg" alt="Contact Person">
+    Suomi</a>
+  </div>
+  <div class="chip">
+    <img src="resources/css/flag-icon-css-master/flags/1x1/gb.svg" alt="Contact Person">
+    English
+  </div>
+ <div class="chip">
+    <img src="resources/css/flag-icon-css-master/flags/1x1/se.svg" alt="Contact Person">
+    Svenska
+  </div> 
+ </div> 
+        
  
 
   
@@ -60,7 +76,7 @@
    
    <div id="sisalto">
  
- <h1>The innovation conference 2016</h1>
+ <h1><spring:message code="innovaatio.index.heading" /></h1>
  
  
  
@@ -74,13 +90,14 @@
           <div class="card">
             <div class="card-image">
               <img src="resources/kuvat/niagarafalls.jpg">
-              <span class="card-title">For better world</span>
+              <span class="card-title"><spring:message code="innovaatio.index.cardtitle"/></span>
             </div>
             <div class="card-content">
-              <p>Welcome to the innovation conference 2016</p>
+              <p><spring:message code="innovaatio.index.cardtext"/></p>
             </div>
             <div class="card-action">
-              <a href="innot/innovaatiot">Welcome to vote</a>
+              <a href="innot/innovaatiot"><spring:message code="innovaatio.index.wellcome"/>
+              </a>
             </div>
           </div>
         </div>

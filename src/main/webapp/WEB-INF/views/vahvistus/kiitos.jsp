@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,7 +20,7 @@
 
 
 
-<title>Vahvistus</title>
+<title><spring:message code="innovaatio.kiitos.title" /></title>
 </head>
 <body>
 
@@ -34,9 +35,7 @@
     <div class="nav-wrapper blue lighten-1">
       <a href="#!" class="brand-logo center">Logo</a>
       <ul class="left hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li class="active"><a href="collapsible.html">JavaScript</a></li>
+        
       </ul>
     </div>
   </nav>
@@ -44,12 +43,12 @@
 
 <div id="sisalto">
 
-<h1>Kiitoksia ‰‰nest‰</h1>
+<h1><spring:message code="innovaatio.kiitos.heading" /></h1>
 <br>
 <br>
 <br>
 <br>
-<h5><a href="etusivulle">Linkist‰</a> p‰‰set takaisin etusivulle</h5>
+<h5><a href="etusivulle"><spring:message code="innovaatio.kiitos.link" /></a> <spring:message code="innovaatio.kiitos.text" /></h5>
 <br>
 <br>
 <br>

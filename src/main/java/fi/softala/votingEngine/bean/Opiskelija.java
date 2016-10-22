@@ -13,11 +13,11 @@ import fi.softala.votingEngine.beanValidation.StudentNumberExist;
 
 public class Opiskelija {
 	
-	
+private String rooli;	
 private int id	;
 private int ryhmaId;
 private Innovaatio innovaatio;
-
+private String opiskelijanumeroKryptattuna;
 @StudentNumberExist @Pattern(regexp="a\\d{7}") private String opiskelijanumero;
 @Isokirjain @Size(min=1, max=50) private String etunimi;
 @Isokirjain @Size(min=1, max=150) private String sukunimi;
@@ -28,6 +28,20 @@ private Innovaatio innovaatio;
 
 
 
+
+
+public String getRooli() {
+	return rooli;
+}
+public void setRooli(String rooli) {
+	this.rooli = rooli;
+}
+public String getOpiskelijanumeroKryptattuna() {
+	return opiskelijanumeroKryptattuna;
+}
+public void setOpiskelijanumeroKryptattuna(String opiskelijanumeroKryptattuna) {
+	this.opiskelijanumeroKryptattuna = opiskelijanumeroKryptattuna;
+}
 public int getId() {
 	return id;
 }

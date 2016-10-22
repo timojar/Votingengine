@@ -13,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -106,10 +107,14 @@ public class InnovaatioController {
 			innovaatio.setId(id);
 			o.setInnovaatio(innovaatio);
 			String email = o.getEmail();
-			String tunniste = innovaatiodao.talletaOpiskelija(o);
+			String opiskelijanumeroKryptattuna = innovaatiodao.talletaOpiskelija(o);
 			ModelAndView model = new ModelAndView();
 			model.addObject("opiskelija", o);
-
+			o.setOpiskelijanumeroKryptattuna(opiskelijanumeroKryptattuna);
+			String rooli="ROLE_ADMIN";
+			o.setRooli(rooli);
+			manuaLogin(o);
+			
 			return "redirect:/innot/tarkista";
 		}
 
@@ -193,5 +198,21 @@ public class InnovaatioController {
 
 		return i;
 	}
+	
+	
+	
+	private void manuaLogin(Opiskelija o){
+	
+		Authentication authentication = new UsernamePasswordAuthenticationToken(o.getEmail(), o.getOpiskelijanumeroKryptattuna());
+
+		System.out.println(o.getOpiskelijanumeroKryptattuna());
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+	
+	
+	
+	}
+
+	
+	
 
 }

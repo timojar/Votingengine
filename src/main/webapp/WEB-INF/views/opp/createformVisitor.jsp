@@ -101,7 +101,7 @@
 <br>
 <br>
 
-<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+<button class="btn waves-effect waves-light" type="submit" name="action"><spring:message code="opiskelija.create.button"></spring:message>
     <i class="material-icons right">send</i>
   </button>
         

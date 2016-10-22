@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
 
 <%
 response.setHeader("Cache-Control","no-cache"); 
@@ -15,7 +16,7 @@ response.setDateHeader ("Expires", -1);
 <html>
 <head>
 
-<title>Insert title here</title>
+<title><spring:message code="innovaatio.listaus.title" /></title>
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <!--Import materialize.css-->
@@ -44,18 +45,15 @@ response.setDateHeader ("Expires", -1);
 	
 	 <nav>
     <div class="nav-wrapper blue lighten-1">
-      <a href="#!" class="brand-logo center">Logo</a>
+      <a  class="brand-logo center">Logo</a>
       <ul class="left hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li class="active"><a href="collapsible.html">JavaScript</a></li>
+       <li><a href="../j_spring_security_logout" > <spring:message code="innovaatio.listaus.link" /></a></li> 
       </ul>
     </div>
   </nav>
 	
 
 
- 
 
   
         
@@ -69,7 +67,7 @@ response.setDateHeader ("Expires", -1);
    
    <div id="sisalto">
  
- <h1>Innovaatiot</h1>
+ <h1><spring:message code="innovaatio.listaus.heading" /></h1>
  
  
  
@@ -81,7 +79,7 @@ response.setDateHeader ("Expires", -1);
         
      
          
-  <p><a href="../j_spring_security_logout" > Kirjaudu ulos</a></p>         
+         
      
             
  <table>
@@ -100,7 +98,7 @@ response.setDateHeader ("Expires", -1);
    <form:input path="id" value="${innovaatio.id}" type="hidden"/>
    
    
-  <button class="btn waves-effect waves-light" type="submit" name="action">Vote
+  <button class="btn waves-effect waves-light" type="submit" name="action"><spring:message code="innovaatio.listaus.button" />
     <i class="material-icons right">send</i>
   </button>
   </form:form>

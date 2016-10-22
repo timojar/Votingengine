@@ -78,6 +78,23 @@ public ModelAndView listaa(){
 
 
 
+@RequestMapping(value = "peru", method = RequestMethod.GET)
+public ModelAndView peruValvistus(){
+	
+	
+	
+	ModelAndView model=new ModelAndView("redirect:/innot/innovaatiot");
+	
+
+	
+	return model;
+	
+}
+
+
+
+
+
 
 
 
