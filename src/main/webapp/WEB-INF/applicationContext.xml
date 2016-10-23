@@ -81,6 +81,9 @@
 		<sec:intercept-url pattern="/innot/innovaatiot**" access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" /> 
 		<sec:intercept-url pattern="/innot/innovaatiot*" access="isAuthenticated()" />
 		
+		<sec:intercept-url pattern="/aanet/aanestys**" access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" /> 
+		<sec:intercept-url pattern="/aanet/aanestys*" access="isAuthenticated()" />
+		
 		<sec:intercept-url pattern="/*" access="permitAll" />
 		<sec:form-login
 			login-page="/loginpage"

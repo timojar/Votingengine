@@ -94,7 +94,7 @@ public void muutaoikeuksia(int opiskelijaId){
 
 public List<Aani> listaaTulokset() {
 
-	String sql = "select nimi, aihe, count(innoId) as lkm FROM aani  join innovaatio on innovaatio.id= aani.innoId group by nimi";
+	String sql = "select nimi, aihe, count(innoId) as lkm FROM aani  join innovaatio on innovaatio.id= aani.innoId group by nimi order by lkm desc";
 	
 	RowMapper<Aani> mapper = new AaniRowMapper();
 	List<Aani> aanet = jdbcTemplate.query(sql, mapper);

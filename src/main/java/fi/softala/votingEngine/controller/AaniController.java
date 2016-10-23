@@ -121,6 +121,18 @@ public ModelAndView getdata(@ModelAttribute(value = "inno") Innovaatio innovaati
 	
 }
 
+
+@RequestMapping(value = "logout", method = RequestMethod.GET)
+public ModelAndView ulosKirjaudu() {
+
+	ModelAndView model = new ModelAndView("logout");
+
+	SecurityContextHolder.getContext().setAuthentication(null);
+
+	return model;
+}
+
+
 	@RequestMapping(value = "aanestys", method = RequestMethod.GET)
 	public String create(
 			@ModelAttribute(value = "inno") Innovaatio innovaatio,

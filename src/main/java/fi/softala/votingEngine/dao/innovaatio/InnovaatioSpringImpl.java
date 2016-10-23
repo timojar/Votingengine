@@ -48,7 +48,7 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 
 	public List<Innovaatio> haeKaikki(int ryhmaId) {
 
-		String sql = "select id, nimi ,  aihe from innovaatio where ryhmaId !=?";
+		String sql = "select id, nimi ,  aihe from innovaatio where ryhmaId !=? order by nimi";
 		Object[] parametrit = new Object[] { ryhmaId };
 		RowMapper<Innovaatio> mapper = new InnovaatioRowMapper();
 		List<Innovaatio> innovaatiot = jdbcTemplate.query(sql, parametrit, mapper);
