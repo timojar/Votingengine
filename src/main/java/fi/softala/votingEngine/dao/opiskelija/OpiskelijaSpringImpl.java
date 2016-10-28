@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 
 
+
 import javax.inject.Inject;
 
 
@@ -18,6 +19,8 @@ import javax.inject.Inject;
 
 
 
+
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -28,6 +31,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 
 import org.springframework.stereotype.Repository;
+
 
 
 
@@ -75,8 +79,8 @@ public class OpiskelijaSpringImpl implements OpiskelijaDao{
 		final String sukunimi = o.getSukunimi();
 		final String opiskelijanumero=o.getOpiskelijanumero();
 		final String email=o.getEmail();
-		final int ryhmaId=1;
-		final int valtuusId=1;
+		final int ryhmaId=o.getRyhmaId();
+		final int valtuusId=o.getValtuusId();
 		final String kryptaus=kryptaaja.opiskelijanumeroKryptattuna(opiskelijanumero);
 
 		// jdbc pist‰‰ generoidun id:n t‰nne talteen
@@ -164,7 +168,31 @@ public class OpiskelijaSpringImpl implements OpiskelijaDao{
 
 	
 	
+	public Opiskelija etsiOpiskelija(int id){
+		
+		
+		
+		 
+		 String sql = "select etunimi, sukunimi, opiskelijanumero, email, ryhmaId, id from opiskelija where id = ? ";
+			Object[] parametrit = new Object[] { id,  };
+			RowMapper<Opiskelija> mapper = new OpiskelijaRowMapper();
+
+			Opiskelija o;
+			try {
+				o = jdbcTemplate.queryForObject(sql, parametrit, mapper);
+			} catch (IncorrectResultSizeDataAccessException e) {
+				throw new EiLoydyPoikkeus(e);
+			}
+		
+		
+		
+		
+	return o;
+		
+	}
 	
+	
+		
 	
 	
 	

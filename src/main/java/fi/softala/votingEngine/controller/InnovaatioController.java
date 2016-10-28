@@ -3,10 +3,13 @@ package fi.softala.votingEngine.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.spel.ast.OpPlus;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,15 +30,45 @@ import org.springframework.web.servlet.ModelAndView;
 import fi.softala.votingEngine.bean.Innovaatio;
 import fi.softala.votingEngine.bean.Opiskelija;
 import fi.softala.votingEngine.bean.Ryhma;
+import fi.softala.votingEngine.bean.VerificationToken;
 import fi.softala.votingEngine.dao.innovaatio.InnovaatioDao;
+import fi.softala.votingEngine.dao.opiskelija.OpiskelijaDao;
+import fi.softala.votingEngine.dao.token.TokenDao;
+import fi.softala.votingEngine.emailservice.SpostiLahetys;
 
+import java.util.UUID;
 @Controller
 @RequestMapping(value = "/innot")
 @SessionAttributes({ "opiskelija", "inno" })
 public class InnovaatioController {
 
+	@Autowired
+	private OpiskelijaDao opiskelijadao;
+	@Autowired
+	private TokenDao tokendao;
+	
+	@Autowired
+	private SpostiLahetys lahetys;
+	
+	
+	public TokenDao getTokendao() {
+		return tokendao;
+	}
+
+	public void setTokendao(TokenDao tokendao) {
+		this.tokendao = tokendao;
+	}
+
 	@Inject
 	private InnovaatioDao innovaatiodao;
+
+	public OpiskelijaDao getOpiskelijadao() {
+		return opiskelijadao;
+	}
+
+	public void setOpiskelijadao(OpiskelijaDao opiskelijadao) {
+		this.opiskelijadao = opiskelijadao;
+	}
 
 	public InnovaatioDao getInnovaatiodao() {
 		return innovaatiodao;
@@ -51,7 +84,7 @@ public class InnovaatioController {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		String email = auth.getName();
-		Opiskelija o = innovaatiodao.haeOpiskelija(email);
+		Opiskelija o = opiskelijadao.haeOpiskelija(email);
 		int ryhmaId = o.getRyhmaId();
 
 		ModelAndView model = new ModelAndView("inn/listaus");
@@ -82,7 +115,7 @@ public class InnovaatioController {
 	public String create(
 			@ModelAttribute(value = "innovaatio") @Valid Innovaatio innovaatio,
 			BindingResult result,
-			@ModelAttribute(value = "opiskelija") Opiskelija o) {
+			@ModelAttribute(value = "opiskelija") Opiskelija opiskelija) {
 		String polku = "";
 
 		if (result.hasErrors()) {
@@ -95,26 +128,21 @@ public class InnovaatioController {
 			String tyyppi = "innovaatio";
 			ryhma.setTyyppi(tyyppi);
 			ryhma.setNimi(nimi);
-
+			
 			int ryhmaId = innovaatiodao.talletaRyhma(ryhma);
 			innovaatio.setRyhmaId(ryhmaId);
 
 			int id = innovaatiodao.talletaInnovaatio(innovaatio);
-
-			Logger log = LoggerFactory.getLogger(InnovaatioController.class);
-
-			o.setRyhmaId(ryhmaId);
-			innovaatio.setId(id);
-			o.setInnovaatio(innovaatio);
-			String email = o.getEmail();
-			String opiskelijanumeroKryptattuna = innovaatiodao.talletaOpiskelija(o);
-			ModelAndView model = new ModelAndView();
-			model.addObject("opiskelija", o);
-			o.setOpiskelijanumeroKryptattuna(opiskelijanumeroKryptattuna);
-			String rooli="ROLE_ADMIN";
-			o.setRooli(rooli);
-			manuaLogin(o);
 			
+			int valtuusId=2;
+			opiskelija.setValtuusId(valtuusId);
+			opiskelija.setRyhmaId(ryhmaId);
+			innovaatio.setId(id);
+			opiskelija.setInnovaatio(innovaatio);
+			opiskelijadao.talletaOpiskelija(opiskelija);
+			ModelAndView model = new ModelAndView();
+			model.addObject("opiskelija", opiskelija);
+
 			return "redirect:/innot/tarkista";
 		}
 
@@ -128,7 +156,7 @@ public class InnovaatioController {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		String email = auth.getName();
-		o = innovaatiodao.haeOpiskelija(email);
+		o = opiskelijadao.haeOpiskelija(email);
 
 		int ryhmaId = o.getRyhmaId();
 		Innovaatio innovaatio = innovaatiodao.etsiInnovaatio(ryhmaId);
@@ -168,6 +196,62 @@ public class InnovaatioController {
 		return "redirect:/";
 	}
 
+	@RequestMapping(value = "lisaaopiskelija", method = RequestMethod.GET)
+	public ModelAndView viewLisaaOpiskelija() {
+
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		String email = auth.getName();
+		Opiskelija o = opiskelijadao.haeOpiskelija(email);
+		
+		ModelAndView model = new ModelAndView("inn/addOppilas");
+		model.addObject("opiskelija", o);
+		model.addObject("token", new VerificationToken());
+
+		return model;
+	}
+
+	@RequestMapping(value = "lisaaopiskelija", method = RequestMethod.POST)
+	public ModelAndView LisaaOpiskelija(
+			@ModelAttribute(value = "token") VerificationToken v) {
+
+		ModelAndView model = new ModelAndView("");
+
+		System.out.println(v.getEmail() + v.getRyhmaId());
+		String tokenId=UUID.randomUUID().toString();
+		v.setTokenId(tokenId);
+		tokendao.lisaaToken(v);
+		lahetys.sendMail(v.getEmail(), "Confirmation","http://localhost:8080/softala_votingengine/innot/lisaaopiskelija/confirm/"+tokenId );
+
+		return model;
+	}
+
+	
+	
+	@RequestMapping(value = "lisaaopiskelija/confirm/{tokenId}", method = RequestMethod.GET)
+public ModelAndView receiveConfirmOpiskelija(@PathVariable String tokenId){
+	ModelAndView model=new ModelAndView("inn/confirm");
+	
+	
+	
+	
+	
+	 model.addObject("opiskelija", new Opiskelija());
+	
+		
+		return model;
+}
+		
+	
+	
+	@RequestMapping(value = "lisaaopiskelija/confirm?tk={token}", method = RequestMethod.POST)
+public String ConfirmOpiskelija(){
+	
+		
+		return "";
+}
+	
+	
 	private Opiskelija dummyOpiskelija() {
 
 		final String email = "oletus@oletus";
@@ -198,21 +282,5 @@ public class InnovaatioController {
 
 		return i;
 	}
-	
-	
-	
-	private void manuaLogin(Opiskelija o){
-	
-		Authentication authentication = new UsernamePasswordAuthenticationToken(o.getEmail(), o.getOpiskelijanumeroKryptattuna());
-
-		System.out.println(o.getOpiskelijanumeroKryptattuna());
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-	
-	
-	
-	}
-
-	
-	
 
 }

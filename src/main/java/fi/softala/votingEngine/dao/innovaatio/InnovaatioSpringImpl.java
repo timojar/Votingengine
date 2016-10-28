@@ -132,58 +132,6 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 	
 	
 
-	public String talletaOpiskelija(Opiskelija o){
-		
-		
-		Kryptaaja kryptaaja=new Kryptaaja();
-		
-		
-		
-		final String sql = "insert into opiskelija(etunimi, sukunimi, opiskelijanumero, email, ryhmaId, valtuusId, enabled, opiskelijanumeroKryptattuna) values(?,?,?,?,?,?,?,?)";
-
-		// anonyymi sis‰luokka tarvitsee vakioina v‰litett‰v‰t arvot,
-		// jotta roskien keruu onnistuu t‰m‰n metodin suorituksen p‰‰ttyess‰.
-		final String etunimi = o.getEtunimi();
-		final String sukunimi = o.getSukunimi();
-		final String opiskelijanumero=o.getOpiskelijanumero();
-		final String email=o.getEmail();
-		final int ryhmaId=o.getRyhmaId();
-		final int valtuusId=2;
-		final int enabled=1;
-		final String kryptaus=kryptaaja.opiskelijanumeroKryptattuna(opiskelijanumero);
-
-		// jdbc pist‰‰ generoidun id:n t‰nne talteen
-		KeyHolder idHolder = new GeneratedKeyHolder();
-
-		// suoritetaan p‰ivitys itse m‰‰ritellyll‰ PreparedStatementCreatorilla
-		// ja KeyHolderilla
-		jdbcTemplate.update(new PreparedStatementCreator() {
-			public PreparedStatement createPreparedStatement(
-					Connection connection) throws SQLException {
-				PreparedStatement ps = connection.prepareStatement(sql,
-						new String[] { "id" });
-				ps.setString(1, etunimi);
-				ps.setString(2, sukunimi);
-				ps.setString(3, opiskelijanumero);
-				ps.setString(4, email);
-				ps.setInt(5, ryhmaId);
-				ps.setInt(6, valtuusId);
-				ps.setInt(7, enabled);
-				ps.setString(8, kryptaus);
-				return ps;
-			}
-		}, idHolder);
-
-		// tallennetaan id takaisin beaniin, koska
-		// kutsujalla pit‰isi olla viittaus samaiseen olioon
-		o.setId(idHolder.getKey().intValue());	
-		
-		
-		 
-		return kryptaus;
-		
-	}
-	
 	
 	
 	
@@ -192,57 +140,9 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 		 
 		
 		
-		public Opiskelija etsiOpiskelija(int id){
-			
-			
-			
-			 
-			 String sql = "select etunimi, sukunimi, opiskelijanumero, email, ryhmaId, id from opiskelija where id = ? ";
-				Object[] parametrit = new Object[] { id,  };
-				RowMapper<Opiskelija> mapper = new OpiskelijaRowMapper();
-
-				Opiskelija o;
-				try {
-					o = jdbcTemplate.queryForObject(sql, parametrit, mapper);
-				} catch (IncorrectResultSizeDataAccessException e) {
-					throw new EiLoydyPoikkeus(e);
-				}
-			
-			
-			
-			
-		return o;
-			
-		}
 		
 		
-		
-		
-	public Opiskelija haeOpiskelija(String email)	
-	{
-			
-			
-			
-			 
-			 String sql = "select * from opiskelija where  email=?";
-				Object[] parametrit = new Object[] { email };
-				RowMapper<Opiskelija> mapper = new OpiskelijaRowMapper();
-
-				Opiskelija o;
-				try {
-					o = jdbcTemplate.queryForObject(sql, parametrit, mapper);
-				} catch (IncorrectResultSizeDataAccessException e) {
-					throw new EiLoydyPoikkeus(e);
-				}
-			
-			
-			
-			
-		return o;
-			
-		}
-
-
+	
 	
 	public int talletaRyhma(Ryhma ryhma){
 		

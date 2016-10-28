@@ -20,6 +20,7 @@ public class OpiskelijaRowMapper implements RowMapper<Opiskelija>{
         o.setEmail(rs.getString("email"));
         o.setOpiskelijanumero(rs.getString("opiskelijanumero"));
         o.setRyhmaId(rs.getInt("ryhmaId"));
+        o.setValtuusId(rs.getInt("valtuusId"));
         
         return o;  
     } 	

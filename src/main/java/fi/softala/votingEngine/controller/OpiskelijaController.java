@@ -95,6 +95,11 @@ public void setDao(OpiskelijaDao dao) {
 		
 		else{
 			
+			int ryhmaId=1;
+			int valtuusId=1;
+		opiskelija.setRyhmaId(ryhmaId);	
+		opiskelija.setValtuusId(valtuusId);
+			
 		dao.talletaOpiskelija(opiskelija);
 	
 		}

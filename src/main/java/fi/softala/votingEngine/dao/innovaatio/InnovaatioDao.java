@@ -17,11 +17,11 @@ public abstract Innovaatio etsiInnovaatio(int ryhmaId);
 
 public abstract Innovaatio tarkistaInnovaatio(String nimi);
 
-public abstract Opiskelija etsiOpiskelija(int id);
-public abstract  Opiskelija haeOpiskelija(String email);
 
 
-public abstract String  talletaOpiskelija(Opiskelija o);
+
+
+
 
 public abstract int talletaRyhma(Ryhma ryhma);
 	

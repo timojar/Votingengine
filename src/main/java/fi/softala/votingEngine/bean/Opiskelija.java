@@ -1,9 +1,11 @@
 package fi.softala.votingEngine.bean;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+
 
 
 
@@ -16,6 +18,7 @@ public class Opiskelija {
 private String rooli;	
 private int id	;
 private int ryhmaId;
+private int valtuusId;
 private Innovaatio innovaatio;
 private String opiskelijanumeroKryptattuna;
 @StudentNumberExist @Pattern(regexp="a\\d{7}") private String opiskelijanumero;
@@ -26,8 +29,14 @@ private String opiskelijanumeroKryptattuna;
 @EmailExist @Email @Size(min=1) private String email;
 
 
+@Column(name = "enabled")
+private boolean enabled;
 
 
+public Opiskelija() {
+    super();
+    this.enabled=false;
+}
 
 
 public String getRooli() {
@@ -50,6 +59,26 @@ public void setId(int id) {
 }
 
 
+
+
+public int getValtuusId() {
+	return valtuusId;
+}
+
+
+public void setValtuusId(int valtuusId) {
+	this.valtuusId = valtuusId;
+}
+
+
+public boolean isEnabled() {
+	return enabled;
+}
+
+
+public void setEnabled(boolean enabled) {
+	this.enabled = enabled;
+}
 
 
 public int getRyhmaId() {

@@ -13,12 +13,11 @@ import fi.softala.votingEngine.emailservice.SpostiLahetys;
 @RequestMapping (value="/")
 public class LoginController {
  
-	@Autowired
-	private SpostiLahetys lahetys;
+	
 	
 	@RequestMapping(value="/loginpage", method = RequestMethod.GET)
 	public String login(Model model) {
-		lahetys.sendMail("timo.jarmala@myy.haaga-helia.fi", "subject", "body");
+		
 		return "login";
  
 	}
