@@ -68,7 +68,11 @@ public class TokenController {
 	
 	
 	
-	
+	@RequestMapping(value = "etusivulle", method = RequestMethod.GET)
+	public String index() {
+
+		return "redirect:/";
+	}
 	
 	
 	
@@ -98,9 +102,9 @@ public class TokenController {
 		
 		@RequestMapping(value = "{tokenId}", method = RequestMethod.POST)
 	public String ConfirmOpiskelija(@ModelAttribute(value = "opiskelija") Opiskelija opiskelija, BindingResult result, @ModelAttribute(value = "tokenId") String tokenId){
-		System.out.println(opiskelija.getRyhmaId());
+		
 		if (result.hasErrors()) {
-			return "inn/createform";
+			return "inn/confirm";
 		}
 		else {
 			
@@ -113,7 +117,7 @@ public class TokenController {
 			
 			tokendao.poistaToken(tokenId);
 			
-			return "";}
+			return "inn/vahvistus";}
 	}
 	
 	

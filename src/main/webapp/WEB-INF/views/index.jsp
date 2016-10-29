@@ -40,10 +40,10 @@
       <a class="brand-logo center">Innovation</a>
       <ul class="left hide-on-med-and-down">
         <li><a href="opiskelijat/uusivierailija"><spring:message code="innovaatio.index.nav.registration" /></a></li>
-        <li><a href="opiskelijat/uusi"><spring:message code="innovaatio.index.nav.myinnovation" /></a></li>
+        <li><a href="innot/myinnovation"><spring:message code="innovaatio.index.nav.myinnovation" /></a></li>
         <li><a href="innot/innovaatiot"><spring:message code="innovaatio.index.nav.vote"/></a></li>
         <li><a href="aanet/tulokset"><spring:message code="innovaatio.index.nav.results"/></a></li>
-         <li><a href="innot/hallitse">Add student</a></li>
+         
       </ul>
     </div>
   </nav>

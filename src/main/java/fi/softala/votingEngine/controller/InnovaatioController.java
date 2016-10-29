@@ -216,7 +216,7 @@ public class InnovaatioController {
 	public ModelAndView LisaaOpiskelija(
 			@ModelAttribute(value = "token") Token v) {
 
-		ModelAndView model = new ModelAndView("");
+		ModelAndView model = new ModelAndView("inn/emailSucceed");
 
 		System.out.println(v.getEmail() + v.getRyhmaId());
 		String tokenId=UUID.randomUUID().toString();
@@ -228,8 +228,15 @@ public class InnovaatioController {
 	}
 
 	
+
+
 	
-	
+	@RequestMapping(value="myinnovation")
+	public String myInnovation(){
+		
+		
+		return "inn/innovation";
+	}
 	
 	
 	private Opiskelija dummyOpiskelija() {
