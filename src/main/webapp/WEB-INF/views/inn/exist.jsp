@@ -1,99 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
-<%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
-
+ <%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
+ <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>   
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title><spring:message code="innovaatio.view.title" /></title>
+<title>New</title>
 
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<!--Import materialize.css-->
 <link type="text/css" rel="stylesheet" href="../resources/css/materialize.min.css" 
 	media="screen,projection" />
 	
-<link type="text/css" rel="stylesheet" href="../resources/css/tyyli.css" 
-	/>	
+<link type="text/css" rel="stylesheet" href="../resources/css/tyyli.css"> 
+<link type="text/css" rel="stylesheet" href="../resources/css/form.css">
+
+
+
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
 </head>
 <body>
 
 
+<!--Import jQuery before materialize.js-->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	
+	
 	 <nav>
     <div class="nav-wrapper blue lighten-1">
       <a href="#!" class="brand-logo center">Logo</a>
       <ul class="left hide-on-med-and-down">
-       <li><a href="../" >Frontpage</a></li> 
+        
       </ul>
     </div>
   </nav>
 	
+
+
+<br>
+<br>
+<br>
 <div id="sisalto">
 
-
-
-
+<h1>Your account exist already</h1>
 
 
 <br>
 <br>
-
-<br>
-
-<br>
-
-<h1>My innovation</h1>
-
-<br>
-<br>
-<a class="waves-effect waves-light btn" href="../opiskelijat/uusi">Create innovation</a>
-
-<a class="waves-effect waves-light btn" href="hallitse">Edit innovation</a>
-<br>
-
-<br>
 <br>
 
 
+<h4>This <a href="etusivulle">link</a> will direct you to frontpage</h4>
+
+ </div>
  
+  <br>
 <br>
 <br>
-
-
-
+  
+  <br>
 <br>
 <br>
-    
-    
+  
+      
+        <br>
+<br>
+<br>
+  
+  <br>
+<br>
+<br>
+  
+      
+       
+         
+       
+         
+         
+      
+   
+       
+       
+         
+         
+      
+   
         
 
-
-
-
-
-
-<br>
-<br>
-
-<br>
-
-            
-
-
-
-<br>
-<br>
-<br>
-
-    
-    <br>
- </div>
-
-<br>
-<br>
-<br>
-<br>
 
 
 
@@ -121,7 +125,9 @@
             <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
             </div>
           </div>
-        </footer>
+        </footer>	
+
+  
 
 
 

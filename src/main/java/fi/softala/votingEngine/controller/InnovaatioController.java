@@ -164,6 +164,7 @@ public class InnovaatioController {
 		o.setInnovaatio(innovaatio);
 		
 		ModelAndView model = new ModelAndView("inn/view");
+		model.addObject("inno", innovaatio);
 		model.addObject("opiskelija1", o);
 		model.addObject("oppilaat", opiskelijadao.haeInnovaationOpiskelijat(ryhmaId));
 
@@ -214,16 +215,28 @@ public class InnovaatioController {
 
 	@RequestMapping(value = "lisaaopiskelija", method = RequestMethod.POST)
 	public ModelAndView LisaaOpiskelija(
-			@ModelAttribute(value = "token") Token v) {
+			@ModelAttribute(value = "token") @Valid Token v, BindingResult result, @ModelAttribute(value = "opiskelija") Opiskelija o
+			, @ModelAttribute(value = "inno") Innovaatio i) {
 
+		
+		
 		ModelAndView model = new ModelAndView("inn/emailSucceed");
+		
+		if (result.hasErrors()) {
+			model.setViewName("inn/addOppilas");
+		}
+		
+		else{
 
+			
 		System.out.println(v.getEmail() + v.getRyhmaId());
 		String tokenId=UUID.randomUUID().toString();
 		v.setTokenId(tokenId);
 		tokendao.lisaaToken(v);
-		lahetys.sendMail(v.getEmail(), "Confirmation","http://localhost:8080/softala_votingengine/token/"+tokenId );
-
+		String url="http://localhost:8080/softala_votingengine/token/"+tokenId;
+		String body=emailBody(url,o, i);
+		lahetys.sendMail(v.getEmail(), "Confirmation",body );
+		}
 		return model;
 	}
 
@@ -269,5 +282,23 @@ public class InnovaatioController {
 
 		return i;
 	}
+	
+	
+	
+private String emailBody(String url, Opiskelija o, Innovaatio i){
+	String linebreak = System.getProperty("line.separator");
+	
+String text=
+"Hey! " +  linebreak+linebreak+ 
+o.getEtunimi()+" "+o.getSukunimi()+" has invited you to join  "+i.getNimi()+"-innovation group"+linebreak+
+"Click link below to join:"
++linebreak+linebreak+url+linebreak
++linebreak+
+"Best regards"+linebreak+
+"Innovation Conference ";	
+	
+	return text;
+}
+	
 
 }
