@@ -38,19 +38,79 @@
 
 <br>
 <br>
+
 <br>
+
 <br>
+
 <h1><spring:message code="innovaatio.view.heading" /></h1>
 
+<br>
+<br>
+<a class="waves-effect waves-light btn">Edit</a>
+
+<a class="waves-effect waves-light btn" href="lisaaopiskelija">Add student +</a>
+<br>
+
+<br>
+<br>
+
+<h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.name" />:</span></h5>
+    <h5 class="left--align"><c:out value="${opiskelija1.innovaatio.nimi}"></c:out></h5>
+    <h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.topic" />:</span></h5>
+    <h5 class="left--align"><c:out value="${opiskelija1.innovaatio.aihe}"></c:out></h5>
+ 
+<br>
+<br>
+
+
+
+<br>
+<br>
+    
+    
+        
+
+
+
+
 
 
 <br>
 <br>
 
-   <a href="lisaaopiskelija" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">+</i></a>
+<br>
+<h5 class="left--align"><span id="alaotsikko">Members</span></h5>
+      <table class="striped">
+        <thead>
+          <tr>
+              <th data-field="id">StudentNumber</th>
+              <th data-field="name">Firstname</th>
+              <th data-field="price">Lastname</th>
+              <th data-field="price">Email</th>
+          </tr>
+        </thead>
+
+        <tbody><c:forEach var="opp" items="${oppilaat}">
+          <tr>
+            <td><c:out value="${opp.opiskelijanumero }"></c:out></td>
+            <td><c:out value="${opp.etunimi }"></c:out></td>
+            <td><c:out value="${opp.sukunimi }"></c:out></td>
+            <td><c:out value="${opp.email }"></c:out></td>
+          </tr>
+          </c:forEach>
+          
+        
+        </tbody>
+      </table>
+            
+
+
+
 <br>
 <br>
 <br>
+<h3>Admin</h3>
   	<h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.studentnumber" />:</span></h5>
     <h5 class="left--align"><c:out value="${opiskelija1.opiskelijanumero }"></c:out></h5>
   	<h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.firstname" />:</span></h5>
@@ -61,16 +121,7 @@
     <h5 class="left--align"><c:out value="${opiskelija1.email }"></c:out></h5>
     
     <br>
-<br>
-<br>
-    
-    <h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.name" />:</span></h5>
-    <h5 class="left--align"><c:out value="${opiskelija1.innovaatio.nimi}"></c:out></h5>
-    <h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.topic" />:</span></h5>
-    <h5 class="left--align"><c:out value="${opiskelija1.innovaatio.aihe}"></c:out></h5>
-  </div>
-        
-
+ </div>
 
 <br>
 <br>

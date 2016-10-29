@@ -11,7 +11,11 @@ import java.sql.SQLException;
 
 
 
+import java.util.List;
+
 import javax.inject.Inject;
+
+
 
 
 
@@ -35,8 +39,12 @@ import org.springframework.stereotype.Repository;
 
 
 
+
+
+
 import fi.softala.votingEngine.bean.Opiskelija;
 import fi.softala.votingEngine.dao.EiLoydyPoikkeus;
+
 import fi.softala.votingEngine.util.Kryptaaja;
 @Repository
 public class OpiskelijaSpringImpl implements OpiskelijaDao{
@@ -59,6 +67,17 @@ public class OpiskelijaSpringImpl implements OpiskelijaDao{
 	}
 
 	
+	
+	public List<Opiskelija> haeInnovaationOpiskelijat(int ryhmaId){
+		
+		
+		String sql = "select * from opiskelija where ryhmaId = ?";
+		Object[] parametrit = new Object[] { ryhmaId };
+		RowMapper<Opiskelija> mapper = new OpiskelijaRowMapper();
+		List<Opiskelija> opiskelijat = jdbcTemplate.query(sql, parametrit, mapper);	
+		
+		return opiskelijat;
+	}
 	
 	
 	

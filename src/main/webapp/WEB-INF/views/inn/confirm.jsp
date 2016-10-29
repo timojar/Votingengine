@@ -7,22 +7,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title><spring:message code="opiskelija.create.title"></spring:message></title>
-
-
-
-
+<title>New</title>
 
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <!--Import materialize.css-->
 <link type="text/css" rel="stylesheet" href="../resources/css/materialize.min.css" 
 	media="screen,projection" />
+	
+<link type="text/css" rel="stylesheet" href="../resources/css/tyyli.css"> 
+<link type="text/css" rel="stylesheet" href="../resources/css/form.css">
 
-<link type="text/css" rel="stylesheet" href="../resources/css/form.css"> 		
-<link type="text/css" rel="stylesheet" href="../resources/css/tyyli.css"> 	
 
-<!--Let browser know website is optimized for mobile-->
+
+
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 

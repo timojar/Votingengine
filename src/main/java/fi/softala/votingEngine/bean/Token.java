@@ -1,6 +1,6 @@
 package fi.softala.votingEngine.bean;
 
-public class VerificationToken {
+public class Token {
 	
 private int ryhmaId;	
 private String tokenId;

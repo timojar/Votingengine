@@ -18,6 +18,8 @@ public interface OpiskelijaDao {
 	public abstract Opiskelija tarkistaOpiskelija(String opiskelijanumero);
 
 	public abstract Opiskelija etsiOpiskelija(int id);
+	
+	public abstract List<Opiskelija> haeInnovaationOpiskelijat(int ryhmaId);
 			
 	
 	

@@ -30,7 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fi.softala.votingEngine.bean.Innovaatio;
 import fi.softala.votingEngine.bean.Opiskelija;
 import fi.softala.votingEngine.bean.Ryhma;
-import fi.softala.votingEngine.bean.VerificationToken;
+import fi.softala.votingEngine.bean.Token;
 import fi.softala.votingEngine.dao.innovaatio.InnovaatioDao;
 import fi.softala.votingEngine.dao.opiskelija.OpiskelijaDao;
 import fi.softala.votingEngine.dao.token.TokenDao;
@@ -162,9 +162,10 @@ public class InnovaatioController {
 		Innovaatio innovaatio = innovaatiodao.etsiInnovaatio(ryhmaId);
 
 		o.setInnovaatio(innovaatio);
-
+		
 		ModelAndView model = new ModelAndView("inn/view");
 		model.addObject("opiskelija1", o);
+		model.addObject("oppilaat", opiskelijadao.haeInnovaationOpiskelijat(ryhmaId));
 
 		return model;
 	}
@@ -206,14 +207,14 @@ public class InnovaatioController {
 		
 		ModelAndView model = new ModelAndView("inn/addOppilas");
 		model.addObject("opiskelija", o);
-		model.addObject("token", new VerificationToken());
+		model.addObject("token", new Token());
 
 		return model;
 	}
 
 	@RequestMapping(value = "lisaaopiskelija", method = RequestMethod.POST)
 	public ModelAndView LisaaOpiskelija(
-			@ModelAttribute(value = "token") VerificationToken v) {
+			@ModelAttribute(value = "token") Token v) {
 
 		ModelAndView model = new ModelAndView("");
 
@@ -221,35 +222,14 @@ public class InnovaatioController {
 		String tokenId=UUID.randomUUID().toString();
 		v.setTokenId(tokenId);
 		tokendao.lisaaToken(v);
-		lahetys.sendMail(v.getEmail(), "Confirmation","http://localhost:8080/softala_votingengine/innot/lisaaopiskelija/confirm/"+tokenId );
+		lahetys.sendMail(v.getEmail(), "Confirmation","http://localhost:8080/softala_votingengine/token/"+tokenId );
 
 		return model;
 	}
 
 	
 	
-	@RequestMapping(value = "lisaaopiskelija/confirm/{tokenId}", method = RequestMethod.GET)
-public ModelAndView receiveConfirmOpiskelija(@PathVariable String tokenId){
-	ModelAndView model=new ModelAndView("inn/confirm");
 	
-	
-	
-	
-	
-	 model.addObject("opiskelija", new Opiskelija());
-	
-		
-		return model;
-}
-		
-	
-	
-	@RequestMapping(value = "lisaaopiskelija/confirm?tk={token}", method = RequestMethod.POST)
-public String ConfirmOpiskelija(){
-	
-		
-		return "";
-}
 	
 	
 	private Opiskelija dummyOpiskelija() {
