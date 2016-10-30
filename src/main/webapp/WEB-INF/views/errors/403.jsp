@@ -56,7 +56,7 @@
 	<br>
 	<br>
 
-<h4><spring:message code="innovaatio.403.text"/><a href="logout"><spring:message code="innovaatio.403.link"/></a> </h4>
+<h4><spring:message code="innovaatio.403.text"/><a href="../innot/logout"><spring:message code="innovaatio.403.link"/></a> </h4>
  
 </div>
 <br>

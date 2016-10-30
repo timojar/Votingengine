@@ -180,6 +180,7 @@ public class InnovaatioController {
 
 		model.addObject("inno", innovaatiodao.etsiInnovaatio(ryhmaId));
 		model.addObject("opiskelija1", o);
+		model.addObject("oppilaat", opiskelijadao.haeInnovaationOpiskelijat(ryhmaId));
 
 		return model;
 	}

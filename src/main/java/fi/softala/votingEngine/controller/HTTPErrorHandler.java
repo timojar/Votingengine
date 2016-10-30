@@ -16,6 +16,19 @@ public class HTTPErrorHandler {
 	        return "errors/403";
 	    }	
 	
+	 @RequestMapping(value="/500")
+	    public String error500(){
+	       // DO stuff here 
+	        return "errors/500";
+	    }	
+	
+	 @RequestMapping(value="/404")
+	    public String error404(){
+	       // DO stuff here 
+	        return "errors/404";
+	    }	
+	
+	
 	
 	
 	
