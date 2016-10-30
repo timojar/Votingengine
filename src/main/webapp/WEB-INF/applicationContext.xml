@@ -107,10 +107,13 @@
 	<!-- SPRING SECURITY -->
 
 	<sec:http auto-config="true" use-expressions="true">
-		<sec:intercept-url pattern="/innot/tarkista*" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/innot/tarkista**" access="hasRole('ROLE_ADMIN')" />
+	
+		<sec:intercept-url pattern="/innot/lisaaopiskelija*" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/innot/lisaaopiskelija**" access="hasRole('ROLE_ADMIN')" />
+		
+		
+		<sec:intercept-url pattern="/innot/hallitse**" access="hasRole('ROLE_ADMIN')"  /> 
 		<sec:intercept-url pattern="/innot/hallitse*" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/innot/hallitse**" access="hasRole('ROLE_ADMIN')" />
 		
 		<sec:intercept-url pattern="/innot/innovaatiot**" access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" /> 
 		<sec:intercept-url pattern="/innot/innovaatiot*" access="isAuthenticated()" />

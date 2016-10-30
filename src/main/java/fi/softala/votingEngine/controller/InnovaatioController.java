@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import fi.softala.votingEngine.bean.Innovaatio;
@@ -174,17 +175,18 @@ public class InnovaatioController {
 	@RequestMapping(value = "tarkista", method = RequestMethod.GET)
 	public ModelAndView esiKatsele(
 			@ModelAttribute(value = "opiskelija") Opiskelija o) {
-
+		int ryhmaId=o.getRyhmaId();
 		ModelAndView model = new ModelAndView("inn/view");
 
+		model.addObject("inno", innovaatiodao.etsiInnovaatio(ryhmaId));
 		model.addObject("opiskelija1", o);
 
 		return model;
 	}
 
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public ModelAndView ulosKirjaudu() {
-
+	public ModelAndView ulosKirjaudu(SessionStatus status) {
+		status.setComplete();
 		ModelAndView model = new ModelAndView("logout");
 
 		SecurityContextHolder.getContext().setAuthentication(null);
