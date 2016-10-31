@@ -53,7 +53,8 @@
 
 	<br>
 	<br>
-	<br>
+	<br><h4>If you have voted, you are not able to vote anymore.</h4>
+	<br><h4>If you want to see vote reults, you need to vote before.</h4>
 	<br>
 
 <h4><spring:message code="innovaatio.403.text"/><a href="../innot/logout"><spring:message code="innovaatio.403.link"/></a> </h4>

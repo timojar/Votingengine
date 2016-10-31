@@ -36,6 +36,7 @@ import fi.softala.votingEngine.dao.innovaatio.InnovaatioDao;
 import fi.softala.votingEngine.dao.opiskelija.OpiskelijaDao;
 import fi.softala.votingEngine.dao.token.TokenDao;
 import fi.softala.votingEngine.emailservice.SpostiLahetys;
+import fi.softala.votingEngine.util.Kryptaaja;
 
 import java.util.UUID;
 @Controller
@@ -230,10 +231,12 @@ public class InnovaatioController {
 		}
 		
 		else{
-
+			
+		Kryptaaja krypt=new Kryptaaja();	
 			
 		System.out.println(v.getEmail() + v.getRyhmaId());
-		String tokenId=UUID.randomUUID().toString();
+		String random=UUID.randomUUID().toString();
+		String tokenId=krypt.merkkijonoKryptattuna(random);
 		v.setTokenId(tokenId);
 		tokendao.lisaaToken(v);
 		String url="http://localhost:8080/softala_votingengine/token/"+tokenId;

@@ -1,6 +1,6 @@
 package fi.softala.votingEngine.bean;
 
-import javax.persistence.Column;
+
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -29,14 +29,10 @@ private String opiskelijanumeroKryptattuna;
 @EmailExist @Email @Size(min=1) private String email;
 
 
-@Column(name = "enabled")
-private boolean enabled;
 
 
-public Opiskelija() {
-    super();
-    this.enabled=false;
-}
+
+
 
 
 public String getRooli() {
@@ -71,14 +67,6 @@ public void setValtuusId(int valtuusId) {
 }
 
 
-public boolean isEnabled() {
-	return enabled;
-}
-
-
-public void setEnabled(boolean enabled) {
-	this.enabled = enabled;
-}
 
 
 public int getRyhmaId() {
