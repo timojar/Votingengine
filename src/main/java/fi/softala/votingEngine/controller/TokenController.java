@@ -1,6 +1,7 @@
 package fi.softala.votingEngine.controller;
 
 import javax.inject.Inject;
+import javax.servlet.ServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,12 @@ public class TokenController {
 		this.innovaatiodao = innovaatiodao;
 	}
 
+	@RequestMapping(value = "testaus", method = RequestMethod.GET)
+	public String testaus(ServletRequest request) {
+		System.out.println("Host = " + request.getServerName());
+	    System.out.println("Port = " + request.getServerPort());
+		return "redirect:/";
+	}
 	
 	
 	

@@ -3,6 +3,7 @@ package fi.softala.votingEngine.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -220,7 +221,7 @@ public class InnovaatioController {
 	@RequestMapping(value = "lisaaopiskelija", method = RequestMethod.POST)
 	public ModelAndView LisaaOpiskelija(
 			@ModelAttribute(value = "token") @Valid Token v, BindingResult result, @ModelAttribute(value = "opiskelija") Opiskelija o
-			, @ModelAttribute(value = "inno") Innovaatio i) {
+			, @ModelAttribute(value = "inno") Innovaatio i, ServletRequest request) {
 
 		
 		
@@ -239,7 +240,7 @@ public class InnovaatioController {
 		String tokenId=krypt.merkkijonoKryptattuna(random);
 		v.setTokenId(tokenId);
 		tokendao.lisaaToken(v);
-		String url="http://localhost:8080/softala_votingengine/token/"+tokenId;
+		String url="http://"+request.getServerName()+":"+request.getServerPort()+"/softala_votingengine/token/"+tokenId;
 		String body=emailBody(url,o, i);
 		lahetys.sendMail(v.getEmail(), "Invite to InnoDay",body );
 		}

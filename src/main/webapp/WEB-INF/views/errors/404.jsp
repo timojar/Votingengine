@@ -54,14 +54,14 @@
 <br>
 	<br>
 	<br>
-<h1>Page not found</h1>
+<h1><spring:message code="innovaatio.404.heading"/></h1>
 
 	<br>
 	<br>
 	<br>
 	<br>
 
-<h4><br>This <a href="../">link</a> will direct you back to the frontpage</h4>
+<h4><br><a href="../"><spring:message code="innovaatio.404.link"/></a> <spring:message code="innovaatio.404.text"/></h4>
  
 </div>
 <br>
