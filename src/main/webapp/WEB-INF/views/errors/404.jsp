@@ -14,13 +14,18 @@
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <!--Import materialize.css-->
+
+	
+<link rel="stylesheet" type="text/css" href="resources/css/common.css">
+
+
+<!--Import materialize.css-->
 <link type="text/css" rel="stylesheet" href="../resources/css/materialize.min.css" 
 	media="screen,projection" />
 	
 <link type="text/css" rel="stylesheet" href="../resources/css/tyyli.css"> 	
 
-<!--Let browser know website is optimized for mobile-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 
 
 
@@ -49,14 +54,14 @@
 <br>
 	<br>
 	<br>
-<h1>Missing data</h1>
+<h1>Page not found</h1>
 
 	<br>
 	<br>
 	<br>
 	<br>
 
-<h4>There are missing data to perform a current task. <br>This <a href="../innot/logout">link</a> will direct you back to the frontpage</h4>
+<h4><br>This <a href="../">link</a> will direct you back to the frontpage</h4>
  
 </div>
 <br>

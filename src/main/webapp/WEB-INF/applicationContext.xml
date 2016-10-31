@@ -32,7 +32,7 @@
 	<mvc:view-controller path="/" view-name="index" />
 	
 	<!-- location of static content (images, js and css files) -->
-	<mvc:resources mapping="/resources/" location="/resources/" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	
 	

@@ -238,7 +238,7 @@ public class InnovaatioController {
 		tokendao.lisaaToken(v);
 		String url="http://localhost:8080/softala_votingengine/token/"+tokenId;
 		String body=emailBody(url,o, i);
-		lahetys.sendMail(v.getEmail(), "Confirmation",body );
+		lahetys.sendMail(v.getEmail(), "Invite to InnoDay",body );
 		}
 		return model;
 	}
