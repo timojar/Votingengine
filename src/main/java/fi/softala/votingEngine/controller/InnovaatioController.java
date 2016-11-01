@@ -40,6 +40,7 @@ import fi.softala.votingEngine.emailservice.SpostiLahetys;
 import fi.softala.votingEngine.util.Kryptaaja;
 
 import java.util.UUID;
+
 @Controller
 @RequestMapping(value = "/innot")
 @SessionAttributes({ "opiskelija", "inno" })
@@ -49,11 +50,10 @@ public class InnovaatioController {
 	private OpiskelijaDao opiskelijadao;
 	@Autowired
 	private TokenDao tokendao;
-	
+
 	@Autowired
 	private SpostiLahetys lahetys;
-	
-	
+
 	public TokenDao getTokendao() {
 		return tokendao;
 	}
@@ -131,13 +131,13 @@ public class InnovaatioController {
 			String tyyppi = "innovaatio";
 			ryhma.setTyyppi(tyyppi);
 			ryhma.setNimi(nimi);
-			
+
 			int ryhmaId = innovaatiodao.talletaRyhma(ryhma);
 			innovaatio.setRyhmaId(ryhmaId);
 
 			int id = innovaatiodao.talletaInnovaatio(innovaatio);
-			
-			int valtuusId=2;
+
+			int valtuusId = 2;
 			opiskelija.setValtuusId(valtuusId);
 			opiskelija.setRyhmaId(ryhmaId);
 			innovaatio.setId(id);
@@ -165,11 +165,12 @@ public class InnovaatioController {
 		Innovaatio innovaatio = innovaatiodao.etsiInnovaatio(ryhmaId);
 
 		o.setInnovaatio(innovaatio);
-		
+
 		ModelAndView model = new ModelAndView("inn/view");
 		model.addObject("inno", innovaatio);
 		model.addObject("opiskelija1", o);
-		model.addObject("oppilaat", opiskelijadao.haeInnovaationOpiskelijat(ryhmaId));
+		model.addObject("oppilaat",
+				opiskelijadao.haeInnovaationOpiskelijat(ryhmaId));
 
 		return model;
 	}
@@ -177,12 +178,13 @@ public class InnovaatioController {
 	@RequestMapping(value = "tarkista", method = RequestMethod.GET)
 	public ModelAndView esiKatsele(
 			@ModelAttribute(value = "opiskelija") Opiskelija o) {
-		int ryhmaId=o.getRyhmaId();
+		int ryhmaId = o.getRyhmaId();
 		ModelAndView model = new ModelAndView("inn/view");
 
 		model.addObject("inno", innovaatiodao.etsiInnovaatio(ryhmaId));
 		model.addObject("opiskelija1", o);
-		model.addObject("oppilaat", opiskelijadao.haeInnovaationOpiskelijat(ryhmaId));
+		model.addObject("oppilaat",
+				opiskelijadao.haeInnovaationOpiskelijat(ryhmaId));
 
 		return model;
 	}
@@ -210,7 +212,7 @@ public class InnovaatioController {
 				.getAuthentication();
 		String email = auth.getName();
 		Opiskelija o = opiskelijadao.haeOpiskelija(email);
-		
+
 		ModelAndView model = new ModelAndView("inn/addOppilas");
 		model.addObject("opiskelija", o);
 		model.addObject("token", new Token());
@@ -220,45 +222,41 @@ public class InnovaatioController {
 
 	@RequestMapping(value = "lisaaopiskelija", method = RequestMethod.POST)
 	public ModelAndView LisaaOpiskelija(
-			@ModelAttribute(value = "token") @Valid Token v, BindingResult result, @ModelAttribute(value = "opiskelija") Opiskelija o
-			, @ModelAttribute(value = "inno") Innovaatio i, ServletRequest request) {
+			@ModelAttribute(value = "token") @Valid Token v,
+			BindingResult result,
+			@ModelAttribute(value = "opiskelija") Opiskelija o,
+			@ModelAttribute(value = "inno") Innovaatio i, ServletRequest request) {
 
-		
-		
 		ModelAndView model = new ModelAndView("inn/emailSucceed");
-		
+
 		if (result.hasErrors()) {
 			model.setViewName("inn/addOppilas");
 		}
-		
-		else{
-			
-		Kryptaaja krypt=new Kryptaaja();	
-			
-		System.out.println(v.getEmail() + v.getRyhmaId());
-		String random=UUID.randomUUID().toString();
-		String tokenId=krypt.merkkijonoKryptattuna(random);
-		v.setTokenId(tokenId);
-		tokendao.lisaaToken(v);
-		String url="http://"+request.getServerName()+":"+request.getServerPort()+"/softala_votingengine/token/"+tokenId;
-		String body=emailBody(url,o, i);
-		lahetys.sendMail(v.getEmail(), "Invite to InnoDay",body );
+
+		else {
+
+			Kryptaaja krypt = new Kryptaaja();
+
+			System.out.println(v.getEmail() + v.getRyhmaId());
+			String random = UUID.randomUUID().toString();
+			String tokenId = krypt.merkkijonoKryptattuna(random);
+			v.setTokenId(tokenId);
+			tokendao.lisaaToken(v);
+			String url = "http://" + request.getServerName() + ":"
+					+ request.getServerPort() + "/softala_votingengine/token/"
+					+ tokenId;
+			String body = emailBody(url, o, i);
+			lahetys.sendMail(v.getEmail(), "Invite to InnoDay", body);
 		}
 		return model;
 	}
 
-	
+	@RequestMapping(value = "myinnovation")
+	public String myInnovation() {
 
-
-	
-	@RequestMapping(value="myinnovation")
-	public String myInnovation(){
-		
-		
 		return "inn/innovation";
 	}
-	
-	
+
 	private Opiskelija dummyOpiskelija() {
 
 		final String email = "oletus@oletus";
@@ -289,23 +287,18 @@ public class InnovaatioController {
 
 		return i;
 	}
-	
-	
-	
-private String emailBody(String url, Opiskelija o, Innovaatio i){
-	String linebreak = System.getProperty("line.separator");
-	
-String text=
-"Hey! " +  linebreak+linebreak+ 
-o.getEtunimi()+" "+o.getSukunimi()+" has invited you to join  "+i.getNimi()+"-innovation group"+linebreak+
-"Click link below to join:"
-+linebreak+linebreak+url+linebreak
-+linebreak+
-"Best regards"+linebreak+
-"Innovation Conference ";	
-	
-	return text;
-}
-	
+
+	private String emailBody(String url, Opiskelija o, Innovaatio i) {
+		String linebreak = System.getProperty("line.separator");
+
+		String text = "Hey! " + linebreak + linebreak + o.getEtunimi() + " "
+				+ o.getSukunimi() + " has invited you to join  " + i.getNimi()
+				+ "-innovation group." + linebreak
+				+ "Click link below to join:" + linebreak + linebreak + url
+				+ linebreak + linebreak + "Best regards" + linebreak
+				+ "Innovation Conference ";
+
+		return text;
+	}
 
 }
