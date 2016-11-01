@@ -1,10 +1,6 @@
 
 
-INSERT INTO
-
-
-ryhma 
-VALUES
+INSERT INTO ryhma VALUES
 	
 (1,'vierailijat', 'vierailijat');
 	

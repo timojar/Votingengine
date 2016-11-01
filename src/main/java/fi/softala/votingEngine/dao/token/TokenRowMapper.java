@@ -17,6 +17,7 @@ public class TokenRowMapper implements RowMapper<Token> {
 		t.setTokenId(rs.getString("tokenId"));
 		t.setEmail(rs.getString("email"));
 		t.setRyhmaId(rs.getInt("ryhmaId"));
+		t.setId(rs.getInt("id"));
 		
 		
         

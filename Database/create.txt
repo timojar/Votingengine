@@ -27,13 +27,12 @@ DEFAULT CHARSET=utf8;
 
 create table token
 (
-tokenId varchar (1000) primary key not null,
-
+id int NOT NULL AUTO_INCREMENT primary key,
+tokenId varchar (500) not null,
 ryhmaId int,
-
 email varchar(255) not null,
-
-foreign key(ryhmaId) references ryhma(id));
+foreign key(ryhmaId) references ryhma(id))
+DEFAULT CHARSET=utf8;
 
 
 

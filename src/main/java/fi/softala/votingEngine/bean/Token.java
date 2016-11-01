@@ -7,7 +7,8 @@ import org.hibernate.validator.constraints.Email;
 import fi.softala.votingEngine.beanValidation.EmailExist;
 
 public class Token {
-	
+
+private int id;	
 private int ryhmaId;	
 private String tokenId;
 
@@ -17,6 +18,14 @@ private String email;
 
 
 
+
+public int getId() {
+	return id;
+}
+
+public void setId(int id) {
+	this.id = id;
+}
 
 public int getRyhmaId() {
 	return ryhmaId;
