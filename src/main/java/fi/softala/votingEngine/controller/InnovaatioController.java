@@ -103,6 +103,7 @@ public class InnovaatioController {
 	@RequestMapping(value = "innovaatiot", method = RequestMethod.POST)
 	public String toVote(@ModelAttribute(value = "inno") Innovaatio innovaatio) {
 
+		ModelAndView model = new ModelAndView();
 		return "redirect:/aanet/aanestys";
 	}
 

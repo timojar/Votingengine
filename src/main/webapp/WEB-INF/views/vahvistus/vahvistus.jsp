@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -48,15 +49,24 @@
 <br>
 <br>
 <br>
+<h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.name" />:</span></h5>
+    <h5 class="left--align"><c:out value="${innovaatio.nimi}"></c:out></h5>
+    <h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.topic" />:</span></h5>
+    <h5 class="left--align"><c:out value="${innovaatio.aihe}"></c:out></h5>
+ 
 <br>
 <h5><spring:message code="innovaatio.vahvistus.text" /></h5>
 <br>
 <br>
+
+<h5></h5>
+
 <br>
 <br>
 
+<a href="peru" class="waves-effect red btn-large"><spring:message code="innovaatio.vahvistus.buttonno" /></a>
 <a href="vahvista" class="waves-effect waves-light btn-large"><spring:message code="innovaatio.vahvistus.buttonyes" /></a>
-<a href="peru" class="waves-effect waves-light btn-large"><spring:message code="innovaatio.vahvistus.buttonno" /></a>
+
 
 
 

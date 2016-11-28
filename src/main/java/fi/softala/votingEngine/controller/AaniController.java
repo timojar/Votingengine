@@ -7,6 +7,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,6 +24,7 @@ import fi.softala.votingEngine.bean.Aani;
 import fi.softala.votingEngine.bean.Innovaatio;
 import fi.softala.votingEngine.bean.Opiskelija;
 import fi.softala.votingEngine.dao.aani.DaoAani;
+import fi.softala.votingEngine.dao.innovaatio.InnovaatioDao;
 
 @Controller
 @RequestMapping(value = "aanet")
@@ -32,9 +34,27 @@ public class AaniController {
 	
 @Inject	
 private DaoAani dao;	
+
+
+@Autowired
+private InnovaatioDao innodao;
+
+
+
 	
 	
-	
+	public InnovaatioDao getInnodao() {
+	return innodao;
+}
+
+
+
+public void setInnodao(InnovaatioDao innodao) {
+	this.innodao = innodao;
+}
+
+
+
 	public DaoAani getDao() {
 	return dao;
 }
@@ -157,16 +177,23 @@ public ModelAndView ulosKirjaudu() {
 
 
 	@RequestMapping(value = "aanestys", method = RequestMethod.GET)
-	public String create(
-			@ModelAttribute(value = "inno") Innovaatio innovaatio,
+	public ModelAndView create(
+			@ModelAttribute(value = "inno") Innovaatio i,
 					@ModelAttribute(value = "opiskelija") Opiskelija o) {	
 	
+		ModelAndView model=new ModelAndView(("vahvistus/vahvistus"));
+		int innoId=i.getId();
+		Innovaatio innovaatio=innodao.haeInnovaatio(innoId);
 		
 		
+		
+		model.addObject("innovaatio", innovaatio);
+		
+		System.out.println("Nimi "+innovaatio.getNimi());
 		
 		
 	
-	return "vahvistus/vahvistus";
+	return model;
 	
 	}
 

@@ -131,6 +131,35 @@ public class InnovaatioSpringImpl implements InnovaatioDao {
 	}
 	
 	
+	
+public Innovaatio haeInnovaatio(int innoId){
+		
+		
+		
+		
+		
+		
+		
+		String sql = "select nimi, aihe, id from innovaatio where id = ?";
+		Object[] parametrit = new Object[] { innoId };
+		RowMapper<Innovaatio> mapper = new InnovaatioRowMapper();
+
+		Innovaatio i;
+		try {
+			i = jdbcTemplate.queryForObject(sql, parametrit, mapper);
+		} catch (IncorrectResultSizeDataAccessException e) {
+			throw new EiLoydyPoikkeus(e);
+		}
+		
+		
+		
+		return i;
+		
+		
+	}
+	
+	
+	
 
 	
 	
