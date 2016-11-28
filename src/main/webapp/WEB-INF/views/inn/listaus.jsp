@@ -96,7 +96,7 @@
    <form:input path="id" value="${innovaatio.id}" type="hidden"/>
    
    
-  <button class="btn waves-effect waves-light" type="submit" name="action"><spring:message code="innovaatio.listaus.button" />
+  <button class="btn waves-effect blue" type="submit" name="action"><spring:message code="innovaatio.listaus.button" />
     <i class="material-icons right">send</i>
   </button>
   </form:form>
