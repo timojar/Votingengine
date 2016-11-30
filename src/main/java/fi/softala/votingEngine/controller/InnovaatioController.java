@@ -164,7 +164,7 @@ public class InnovaatioController {
 
 		int ryhmaId = o.getRyhmaId();
 		Innovaatio innovaatio = innovaatiodao.etsiInnovaatio(ryhmaId);
-
+		innovaatio.setRyhmaId(ryhmaId);
 		o.setInnovaatio(innovaatio);
 
 		ModelAndView model = new ModelAndView("inn/view");
@@ -182,7 +182,9 @@ public class InnovaatioController {
 		int ryhmaId = o.getRyhmaId();
 		ModelAndView model = new ModelAndView("inn/view");
 
-		model.addObject("inno", innovaatiodao.etsiInnovaatio(ryhmaId));
+		Innovaatio innovaatio = innovaatiodao.etsiInnovaatio(ryhmaId);
+		innovaatio.setRyhmaId(ryhmaId);
+		model.addObject("inno", innovaatio);
 		model.addObject("opiskelija1", o);
 		model.addObject("oppilaat",
 				opiskelijadao.haeInnovaationOpiskelijat(ryhmaId));
@@ -258,6 +260,68 @@ public class InnovaatioController {
 		return "inn/innovation";
 	}
 
+	
+	
+	
+	@RequestMapping(value = "muokkaa")
+	public String createMuokkaa(@ModelAttribute(value = "inno") Innovaatio i){
+		
+		
+	return "inn/edit";
+	}
+	
+	
+	@RequestMapping(value = "muokkaa" , method = RequestMethod.POST)
+	public ModelAndView muokkaa(@ModelAttribute(value = "inno") Innovaatio i){
+		ModelAndView model=new ModelAndView();
+		
+		if (i.getNimi().length()==0|| i.getNimi().length()>50){
+			
+			
+			
+			String viesti="Name must be size 1-50";
+			
+			
+			
+			model.addObject("virheviesti1", viesti);
+			
+		model.setViewName("inn/edit");		
+			
+			
+		}
+		
+		
+		else if (i.getAihe().length()==0|| i.getAihe().length()>70){
+			
+			
+			
+			String viesti="Topic must be size 1-70";
+			
+			
+			
+			model.addObject("virheviesti2", viesti);
+			
+		model.setViewName("inn/edit");		
+			
+			
+		}
+		
+		
+		else{
+		
+		
+		innovaatiodao.muokkaInnovaatiota(i);
+		model.setViewName("redirect:/innot/hallitse");	
+		}
+		
+		
+	return model;
+	}
+	
+	
+	
+	
+	
 	private Opiskelija dummyOpiskelija() {
 
 		final String email = "oletus@oletus";
@@ -301,5 +365,12 @@ public class InnovaatioController {
 
 		return text;
 	}
+	
+	
+	
+	
+	
+	
+	
 
 }

@@ -115,13 +115,13 @@
 		<sec:intercept-url pattern="/innot/hallitse**" access="hasRole('ROLE_ADMIN')"  /> 
 		<sec:intercept-url pattern="/innot/hallitse*" access="isAuthenticated()" />
 		
-		<sec:intercept-url pattern="/innot/innovaatiot**" access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" /> 
+		<sec:intercept-url pattern="/innot/innovaatiot**" access="hasAnyRole('ROLE_ADMIN, ROLE_USER, OWNER_USER')" /> 
 		<sec:intercept-url pattern="/innot/innovaatiot*" access="isAuthenticated()" />
 		
-		<sec:intercept-url pattern="/aanet/aanestys**" access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" /> 
+		<sec:intercept-url pattern="/aanet/aanestys**" access="hasAnyRole('ROLE_ADMIN, ROLE_USER, OWNER_USER')" /> 
 		<sec:intercept-url pattern="/aanet/aanestys*" access="isAuthenticated()" />
 		
-		<sec:intercept-url pattern="/aanet/tulokset**" access="hasRole('VOTED_USER')"  /> 
+		<sec:intercept-url pattern="/aanet/tulokset**" access="hasAnyRole('VOTED_USER, OWNER_USER')"  /> 
 		<sec:intercept-url pattern="/aanet/tulokset*" access="isAuthenticated()" />
 		
 		<sec:intercept-url pattern="/*" access="permitAll" />

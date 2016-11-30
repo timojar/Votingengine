@@ -25,6 +25,7 @@ import org.springframework.stereotype.Repository;
 
 
 
+
 import fi.softala.votingEngine.bean.Innovaatio;
 import fi.softala.votingEngine.bean.Opiskelija;
 import fi.softala.votingEngine.bean.Ryhma;
@@ -255,7 +256,26 @@ public Innovaatio haeInnovaatio(int innoId){
 
 	
 	
+	public void muokkaInnovaatiota(Innovaatio i){
+		
+		
+		final String sql = "update  innovaatio set nimi=?, aihe=? where id=?";
+
+		
+		
+		
+		
+		Object[] parametrit = new Object[] { i.getNimi(), i.getAihe(), i.getId() };
+
+		jdbcTemplate.update(sql, parametrit);
 	
+		
+		
+		
+		
+		
+		
+	}
 	
 	
 		

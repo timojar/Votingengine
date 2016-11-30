@@ -47,7 +47,7 @@
 
 <br>
 <br>
-<a class="waves-effect waves-light btn">Edit</a>
+<a class="waves-effect waves-light btn" href="muokkaa">Edit</a>
 
 <a class="waves-effect waves-light btn" href="lisaaopiskelija">Add student +</a>
 <br>

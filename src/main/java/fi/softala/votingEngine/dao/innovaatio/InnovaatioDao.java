@@ -19,6 +19,7 @@ public abstract Innovaatio tarkistaInnovaatio(String nimi);
 
 public abstract Innovaatio haeInnovaatio(int innoId);
 
+public abstract void muokkaInnovaatiota(Innovaatio i);
 
 
 

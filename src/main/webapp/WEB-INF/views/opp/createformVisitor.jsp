@@ -40,7 +40,7 @@
     <div class="nav-wrapper blue lighten-1">
       <a href="#!" class="brand-logo center">Logo</a>
       <ul class="left hide-on-med-and-down">
-        
+         <li><a href="../" >Frontpage</a></li> 
       </ul>
     </div>
   </nav>
