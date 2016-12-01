@@ -1,0 +1,9 @@
+
+drop table aani;
+drop table opiskelija;
+
+drop table innovaatio;
+drop table valtuus;
+drop table token;
+drop table ryhma;
+

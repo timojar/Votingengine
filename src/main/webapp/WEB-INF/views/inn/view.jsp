@@ -47,9 +47,9 @@
 
 <br>
 <br>
-<a class="waves-effect waves-light btn" href="muokkaa">Edit</a>
+<a class="waves-effect waves-light btn" href="muokkaa"><spring:message code="innovaatio.view.edit" /></a>
 
-<a class="waves-effect waves-light btn" href="lisaaopiskelija">Add student +</a>
+<a class="waves-effect waves-light btn" href="lisaaopiskelija"><spring:message code="innovaatio.view.add" /></a>
 <br>
 
 <br>
@@ -80,14 +80,14 @@
 <br>
 
 <br>
-<h5 class="left--align"><span id="alaotsikko">Members</span></h5>
+<h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.heading1" /></span></h5>
       <table class="striped">
         <thead>
           <tr>
-              <th data-field="id">StudentNumber</th>
-              <th data-field="name">Firstname</th>
-              <th data-field="price">Lastname</th>
-              <th data-field="price">Email</th>
+              <th data-field="id"><spring:message code="innovaatio.view.studentnumber" /></th>
+              <th data-field="name"><spring:message code="innovaatio.view.firstname" /></th>
+              <th data-field="price"><spring:message code="innovaatio.view.lastname" /></th>
+              <th data-field="price"><spring:message code="innovaatio.view.email" /></th>
           </tr>
         </thead>
 
@@ -110,7 +110,7 @@
 <br>
 <br>
 <br>
-<h3>Admin</h3>
+<h3><spring:message code="innovaatio.view.heading2" /></h3>
   	<h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.studentnumber" />:</span></h5>
     <h5 class="left--align"><c:out value="${opiskelija1.opiskelijanumero }"></c:out></h5>
   	<h5 class="left--align"><span id="alaotsikko"><spring:message code="innovaatio.view.firstname" />:</span></h5>
@@ -130,32 +130,35 @@
 
 
 
-<footer class="page-footer blue lighten-1">
+
+
+ <footer class="page-footer blue lighten-1">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                
               </div>
               <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
+               
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+     
+                 
                 </ul>
+                 <br>
+                  <br>
+                   <br>
+                   <br>
+                  <br>
+                   <br>
               </div>
             </div>
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
+            InnoDay 2016
+              </div>
           </div>
         </footer>
-
 
 
 

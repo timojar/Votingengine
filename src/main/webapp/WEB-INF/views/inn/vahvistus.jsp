@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>New</title>
+<title><spring:message code="innovaatio.kuittaus.title" /></title>
 
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -53,7 +53,7 @@
 <br>
 <div id="sisalto">
 
-<h1>Confirmation succeed</h1>
+<h1><spring:message code="innovaatio.kuittaus.heading" /></h1>
 
 
 <br>
@@ -61,7 +61,7 @@
 <br>
 
 
-<h4>This <a href="etusivulle">link</a> will direct you to frontpage</h4>
+<h4><spring:message code="innovaatio.kuittaus.text1" /> <a href="etusivulle"><spring:message code="innovaatio.kuittaus.link" /></a> <spring:message code="innovaatio.kuittaus.text2" /></h4>
 
  </div>
  
@@ -101,35 +101,33 @@
 
 
 
-<footer class="page-footer blue lighten-1">
+ <footer class="page-footer blue lighten-1">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                
               </div>
               <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
+               
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+     
+                 
                 </ul>
+                 <br>
+                  <br>
+                   <br>
+                   <br>
+                  <br>
+                   <br>
               </div>
             </div>
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
+            InnoDay 2016
+              </div>
           </div>
-        </footer>	
-
-  
-
-
+        </footer>
 
 
 

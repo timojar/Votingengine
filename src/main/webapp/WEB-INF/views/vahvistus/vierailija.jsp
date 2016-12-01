@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+ <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,7 +20,7 @@
 
 
 
-<title>Vahvistus</title>
+<title><spring:message code="innovaatio.vierailija.title" /></title>
 </head>
 <body>
 
@@ -42,12 +43,12 @@
 
 <div id="sisalto">
 
-<h1>Kiitoksia ilmoittautumisesta!</h1>
+<h1><spring:message code="innovaatio.vierailija.heading" /></h1>
 <br>
 <br>
 <br>
 <br>
-<h5>Sähköpostiinne tulee vielä kutsu tilaisuuteen. <a href="etusivulle">Linkistä</a> pääset takaisin etusivulle</h5>
+<h5><spring:message code="innovaatio.vierailija.text1" />. <a href="etusivulle"><spring:message code="innovaatio.vierailija.link" /> </a><spring:message code="innovaatio.vierailija.text2" /></h5>
 <br>
 <br>
 <br>
@@ -72,33 +73,33 @@
 <br>
 <br>
 
-<footer class="page-footer blue lighten-1">
+ <footer class="page-footer blue lighten-1">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                
               </div>
               <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
+               
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+     
+                 
                 </ul>
+                 <br>
+                  <br>
+                   <br>
+                   <br>
+                  <br>
+                   <br>
               </div>
             </div>
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
+            InnoDay 2016
+              </div>
           </div>
         </footer>
-
-
 
 
 

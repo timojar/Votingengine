@@ -1,20 +1,21 @@
 
 
-INSERT INTO ryhma VALUES
+INSERT INTO
+	ryhma
+VALUES
+	(1,'vierailijat', 'vierailijat');
 	
-(1,'vierailijat', 'vierailijat');
 	
-
-	
-
 
 INSERT INTO
-	valtuus 
+	valtuus
 VALUES
-	
-(2,'ROLE_ADMIN'),
-	
-(1,'ROLE_USER'),
-   
- (3,'VOTED_USER');
+	(4,'OWNER_USER'),
+	(2,'ROLE_ADMIN'),
+	(1,'ROLE_USER'),
+    (3,'VOTED_USER');
+    
+    
+    
+insert into opiskelija(etunimi, sukunimi, opiskelijanumero, email, ryhmaId, valtuusId, enabled, opiskelijanumeroKryptattuna) values('Anne','Valsta','a0000000','anne.valsta@haaga-helia.fi',1,4,1,'1ea78cc014339246f0797483acb9598c817b93658ab35c9328531fb4b218cd9e79a487b23f22794a')   
 	
