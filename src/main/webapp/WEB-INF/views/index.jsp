@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -34,16 +35,32 @@
 		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="resources/js/materialize.min.js"></script>
 	
-	
+
 	 <nav>
+	 
+
+	 
     <div class="nav-wrapper blue lighten-1">
       <a class="brand-logo center">Innovation</a>
       <ul class="left hide-on-med-and-down">
+      <sec:authorize access="hasAnyRole('ROLE_ADMIN, ROLE_USER, OWNER_USER, VOTED_USER')">
+      <c:set var="login" value="1"/> 
+<li class="active"><a href="innot/ulos">
+   Logout
+            </a></li>
+           
+            
+</sec:authorize>
+<c:if test="${login!=1 }">
         <li><a href="opiskelijat/uusivierailija"><spring:message code="innovaatio.index.nav.registration" /></a></li>
-        <li><a href="innot/myinnovation"><spring:message code="innovaatio.index.nav.myinnovation" /></a></li>
+		<li><a href="innot/myinnovation"><spring:message code="innovaatio.index.nav.myinnovation" /></a></li>
+
+  </c:if>
+   
         <li><a href="innot/innovaatiot"><spring:message code="innovaatio.index.nav.vote"/></a></li>
-        <li><a href="aanet/tulokset"><spring:message code="innovaatio.index.nav.results"/></a></li>
-         
+       <li> <a href="aanet/tulokset"><spring:message code="innovaatio.index.nav.results"/></a></li>
+        
+      
       </ul>
     </div>
   </nav>
@@ -83,7 +100,7 @@
  
  <br>
  
- 
+
  
  
  <div class="row">

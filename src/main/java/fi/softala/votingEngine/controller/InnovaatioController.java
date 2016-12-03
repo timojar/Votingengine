@@ -230,6 +230,14 @@ String opiskelijanumeroKryptattuna=opiskelijadao.talletaOpiskelija(opiskelija);
 
 		return "redirect:/";
 	}
+	
+	
+	
+	@RequestMapping(value = "ulos", method = RequestMethod.GET)
+	public String indexAndLogout() {
+		SecurityContextHolder.getContext().setAuthentication(null);
+		return "redirect:/";
+	}
 
 	@RequestMapping(value = "lisaaopiskelija", method = RequestMethod.GET)
 	public ModelAndView viewLisaaOpiskelija() {

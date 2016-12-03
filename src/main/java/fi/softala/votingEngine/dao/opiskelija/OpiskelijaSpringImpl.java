@@ -24,6 +24,7 @@ import javax.inject.Inject;
 
 
 
+
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -42,9 +43,9 @@ import org.springframework.stereotype.Repository;
 
 
 
+
 import fi.softala.votingEngine.bean.Opiskelija;
 import fi.softala.votingEngine.dao.EiLoydyPoikkeus;
-
 import fi.softala.votingEngine.util.Kryptaaja;
 @Repository
 public class OpiskelijaSpringImpl implements OpiskelijaDao{
@@ -66,7 +67,7 @@ public class OpiskelijaSpringImpl implements OpiskelijaDao{
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	
+
 	
 	public List<Opiskelija> haeInnovaationOpiskelijat(int ryhmaId){
 		
@@ -192,7 +193,7 @@ public class OpiskelijaSpringImpl implements OpiskelijaDao{
 		
 		
 		 
-		 String sql = "select etunimi, sukunimi, opiskelijanumero, email, ryhmaId, id from opiskelija where id = ? ";
+		 String sql = "select * from opiskelija where id = ? ";
 			Object[] parametrit = new Object[] { id,  };
 			RowMapper<Opiskelija> mapper = new OpiskelijaRowMapper();
 

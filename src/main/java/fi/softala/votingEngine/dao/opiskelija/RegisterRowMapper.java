@@ -22,6 +22,7 @@ public class RegisterRowMapper implements RowMapper<Opiskelija> {
         o.setOpiskelijanumero(rs.getString("opiskelijanumero"));
         o.setRyhmaId(rs.getInt("ryhmaId"));
         o.setValtuusId(rs.getInt("valtuusId"));
+        o.setOpiskelijanumeroKryptattuna("opiskelijanumeroKryptattuna");
         
         return o;  
     } 	
