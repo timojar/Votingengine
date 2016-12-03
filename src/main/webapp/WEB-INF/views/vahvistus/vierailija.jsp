@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>   
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,7 +22,7 @@
 
 
 
-<title><spring:message code="innovaatio.vierailija.title" /></title>
+<title><spring:message code="innovaatio.vahvistus.title" /></title>
 </head>
 <body>
 
@@ -43,16 +45,23 @@
 
 <div id="sisalto">
 
-<h1><spring:message code="innovaatio.vierailija.heading" /></h1>
+<h1><spring:message code="innovaatio.vahvistus.heading" /></h1>
 <br>
 <br>
 <br>
+
 <br>
-<h5><spring:message code="innovaatio.vierailija.text1" />. <a href="etusivulle"><spring:message code="innovaatio.vierailija.link" /> </a><spring:message code="innovaatio.vierailija.text2" /></h5>
+<h5>Thank you for register!</h5>
 <br>
 <br>
+
+<h5>Do you want participate for voting now?</h5>
+
 <br>
 <br>
+
+<a href="etusivulle" class="waves-effect red btn-large">Not yet</a>
+<a href="vote" class="waves-effect waves-light btn-large">Yes</a>
 
 
 
@@ -72,6 +81,7 @@
 <br>
 <br>
 <br>
+
 
  <footer class="page-footer blue lighten-1">
           <div class="container">
@@ -100,6 +110,7 @@
               </div>
           </div>
         </footer>
+
 
 
 

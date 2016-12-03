@@ -2,9 +2,15 @@ package fi.softala.votingEngine.controller;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -100,7 +106,27 @@ public void setDao(OpiskelijaDao dao) {
 		opiskelija.setRyhmaId(ryhmaId);	
 		opiskelija.setValtuusId(valtuusId);
 			
-		dao.talletaOpiskelija(opiskelija);
+		String opiskelijanumeroKryptattuna=dao.talletaOpiskelija(opiskelija);
+		
+		opiskelija.setOpiskelijanumeroKryptattuna(opiskelijanumeroKryptattuna);
+		
+		SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
+		List<SimpleGrantedAuthority> updatedAuthorities = new ArrayList<SimpleGrantedAuthority>();
+		updatedAuthorities.add(authority);
+		
+		
+		
+
+		SecurityContextHolder.getContext().setAuthentication(
+		        new UsernamePasswordAuthenticationToken(
+		                opiskelija.getEmail(),
+		                opiskelijanumeroKryptattuna,
+		                updatedAuthorities)
+		);
+		
+		
+		
+		
 	
 		}
 		return polku;
@@ -114,6 +140,14 @@ public void setDao(OpiskelijaDao dao) {
 		        return "redirect:/";
 		}
 	
+	
+	
+	@RequestMapping(value="vote", method=RequestMethod.GET)
+	 public String toVote() {
+	    	
+		   
+		        return "redirect:/innot/innovaatiot";
+		}
 	
 	
 	

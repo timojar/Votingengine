@@ -21,7 +21,7 @@ private int ryhmaId;
 private int valtuusId;
 private Innovaatio innovaatio;
 private String opiskelijanumeroKryptattuna;
-@StudentNumberExist @Pattern(regexp="a\\d{7}") private String opiskelijanumero;
+@StudentNumberExist @Pattern(regexp="a\\d{7}|[A-Z]{5}|h\\d{5}") private String opiskelijanumero;
 @Isokirjain @Size(min=1, max=50) private String etunimi;
 @Isokirjain @Size(min=1, max=150) private String sukunimi;
 

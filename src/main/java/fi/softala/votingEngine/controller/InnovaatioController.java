@@ -1,5 +1,6 @@
 package fi.softala.votingEngine.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,6 +16,7 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
@@ -143,9 +145,30 @@ public class InnovaatioController {
 			opiskelija.setRyhmaId(ryhmaId);
 			innovaatio.setId(id);
 			opiskelija.setInnovaatio(innovaatio);
-			opiskelijadao.talletaOpiskelija(opiskelija);
+String opiskelijanumeroKryptattuna=opiskelijadao.talletaOpiskelija(opiskelija);
 			ModelAndView model = new ModelAndView();
 			model.addObject("opiskelija", opiskelija);
+			
+			
+			
+			
+			SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_ADMIN");
+			List<SimpleGrantedAuthority> updatedAuthorities = new ArrayList<SimpleGrantedAuthority>();
+			updatedAuthorities.add(authority);
+			
+			
+			
+
+			SecurityContextHolder.getContext().setAuthentication(
+			        new UsernamePasswordAuthenticationToken(
+			                opiskelija.getEmail(),
+			                opiskelijanumeroKryptattuna,
+			                updatedAuthorities)
+			);
+			
+			
+			
+			
 
 			return "redirect:/innot/tarkista";
 		}

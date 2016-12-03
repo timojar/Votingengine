@@ -59,7 +59,7 @@
 				<div class="input-field col s6">
 					<form:label	path="nimi" for="first_name"><spring:message code="innovaatio.create.name" /></form:label>
 					<br>	
-					<form:input path="nimi" cssErrorClass="VirheellinenKentta" placeholder="Placeholder" id="first_name" type="text" class="validate"/> <form:errors path="nimi" cssClass="Virheteksti"/>	
+					<form:input path="nimi" cssErrorClass="VirheellinenKentta" maxlength="50" placeholder="Placeholder" id="first_name" type="text" class="validate"/> <form:errors path="nimi" cssClass="Virheteksti"/>	
 					
 				</div>
 				<br>
@@ -70,7 +70,7 @@
 				<div class="input-field col s6">
 				<form:label path="aihe" for="first_name"> <spring:message code="innovaatio.create.topic" /></form:label>
 				<br/>
-				<form:input path="aihe" id="last_name" type="text" class="validate" placeholder="Placeholder"/><form:errors path="aihe" cssClass="Virheteksti"/>
+				<form:input path="aihe" id="last_name" type="text" class="validate" maxlength="70" placeholder="Placeholder"/><form:errors path="aihe" cssClass="Virheteksti"/>
 					
 					
 				 </div>	

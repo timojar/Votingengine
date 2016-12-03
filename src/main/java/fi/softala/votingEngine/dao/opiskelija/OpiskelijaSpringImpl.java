@@ -82,7 +82,7 @@ public class OpiskelijaSpringImpl implements OpiskelijaDao{
 	
 	
 	
-	public void talletaOpiskelija(Opiskelija o){
+	public String talletaOpiskelija(Opiskelija o){
 		
 		
 		
@@ -130,7 +130,7 @@ public class OpiskelijaSpringImpl implements OpiskelijaDao{
 		
 		
 		
-		
+	return kryptaus;
 		
 	}
 	
