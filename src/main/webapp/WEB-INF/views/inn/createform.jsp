@@ -32,7 +32,7 @@
 <!--Import jQuery before materialize.js-->
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript" src="../resources/js/materialize.min.js"></script>
 	
 	
 	 <nav>
@@ -44,56 +44,56 @@
     </div>
   </nav>
 	
+<br>
+<br>
+<br>
+<h1>Innovation data</h1>
+<br>
+<br>
+<br>
 
 
 
-<h1>
-		<spring:message code="innovaatio.create.heading" />
-	</h1>
-	
-		<form:form modelAttribute="innovaatio" method="post" class="col s12">
-	
-		<div class="row">
-		  
-				
-				<div class="input-field col s6">
-					<form:label	path="nimi" for="first_name"><spring:message code="innovaatio.create.name" /></form:label>
-					<br>	
-					<form:input path="nimi" cssErrorClass="VirheellinenKentta" maxlength="50" placeholder="Placeholder" id="first_name" type="text" class="validate"/> <form:errors path="nimi" cssClass="Virheteksti"/>	
-					
-				</div>
-				<br>
-				<br>
-				<br>
-				
-		</div>		<div class="row">	
-				<div class="input-field col s6">
-				<form:label path="aihe" for="first_name"> <spring:message code="innovaatio.create.topic" /></form:label>
-				<br/>
-				<form:input path="aihe" id="last_name" type="text" class="validate" maxlength="70" placeholder="Placeholder"/><form:errors path="aihe" cssClass="Virheteksti"/>
-					
-					
-				 </div>	
-				
-					
-				
-			
-			</div>
-			
-			<button class="btn waves-effect waves-light" type="submit" name="action"><spring:message code="innovaatio.create.button" />
+<div class="row">
+      <form:form modelAttribute="innovaatio" method="post" class="col s12">
+        <div class="row">
+          <div class="input-field col s6">
+            <form:input path="nimi"  id="input_text" type="text" maxlength="50" length="50"/>
+
+            <label for="input_text">Input text</label><form:errors path="nimi" cssClass="Virheteksti"/>	
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s8">
+          
+            <form:input path="aihe"  id="input_text" type="text" maxlength="70" length="70"/>
+            <label for="textarea1">Textarea</label><form:errors path="aihe" cssClass="Virheteksti"/>
+          </div>
+        </div>
+        
+        
+        <button class="btn waves-effect waves-light" type="submit" name="action"><spring:message code="innovaatio.create.button" />
     <i class="material-icons right">send</i>
   </button>
         
-		</form:form>
-		
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		
+        
+      </form:form>
+    </div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 		
  <footer class="page-footer blue lighten-1">
           <div class="container">
