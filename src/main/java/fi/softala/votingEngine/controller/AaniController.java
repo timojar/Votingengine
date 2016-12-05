@@ -72,6 +72,7 @@ public void setDao(DaoAani dao) {
 
 
 
+
 @RequestMapping(value = "etusivulle", method = RequestMethod.GET)
 public ModelAndView toFrontpage(@ModelAttribute(value = "inno") Innovaatio innovaatio,
 		@ModelAttribute(value = "opiskelija") Opiskelija o){
@@ -84,6 +85,21 @@ public ModelAndView toFrontpage(@ModelAttribute(value = "inno") Innovaatio innov
 	return model;
 	
 }
+
+
+
+@RequestMapping(value = "log", method = RequestMethod.GET)
+public ModelAndView log(){
+	
+	
+	ModelAndView model=new ModelAndView("redirect:/");
+	
+	
+	
+	return model;
+	
+}
+
 
 
 @RequestMapping(value = "tulokset", method = RequestMethod.GET)

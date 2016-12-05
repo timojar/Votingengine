@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -32,6 +33,11 @@
 <div id="sisalto">
 
 
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+<c:set var="admin" value="1"/> 
+</sec:authorize>
+
+
 
 
 
@@ -47,8 +53,9 @@
 
 <br>
 <br>
+<c:if test="${admin!=1}">
 <a class="waves-effect waves-light btn" href="../opiskelijat/uusi"><spring:message code="innovaatio.innovation.create" /></a>
-
+</c:if>
 <a class="waves-effect waves-light btn" href="hallitse"><spring:message code="innovaatio.innovation.edit" /></a>
 <br>
 

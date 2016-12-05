@@ -123,6 +123,10 @@
 		
 		<sec:intercept-url pattern="/aanet/tulokset**" access="hasAnyRole('VOTED_USER, OWNER_USER')"  /> 
 		<sec:intercept-url pattern="/aanet/tulokset*" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/aanet/log**" access="hasAnyRole('ROLE_ADMIN, ROLE_USER, OWNER_USER, VOTED_USER')" /> 
+		<sec:intercept-url pattern="/aanet/log*" access="isAuthenticated()" />
+		
+		
 		
 		<sec:intercept-url pattern="/*" access="permitAll" />
 		<sec:form-login

@@ -35,6 +35,24 @@
 		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="resources/js/materialize.min.js"></script>
 	
+	
+
+
+<sec:authorize access="hasRole('OWNER_USER')">
+<c:set var="owner" value="1"/> 
+</sec:authorize>
+<sec:authorize access="hasRole('VOTED_USER')">
+<c:set var="voted" value="1"/> 
+</sec:authorize>
+<sec:authorize access="hasRole('ROLE_USER')">
+<c:set var="user" value="1"/> 
+</sec:authorize>
+
+
+
+	
+	
+	
 
 	 <nav>
 	 
@@ -51,15 +69,23 @@
            
             
 </sec:authorize>
-<c:if test="${login!=1 }">
+<c:if test="${login!=1}">
+ <li><a href="aanet/log"> <i class="material-icons">vpn_key</i></a></li>
         <li><a href="opiskelijat/uusivierailija"><spring:message code="innovaatio.index.nav.registration" /></a></li>
-		<li><a href="innot/myinnovation"><spring:message code="innovaatio.index.nav.myinnovation" /></a></li>
+		
 
   </c:if>
-   
+
+ <c:if test="${voted!=1 && user!=1}">  
+  <li><a href="innot/myinnovation"><spring:message code="innovaatio.index.nav.myinnovation" /></a></li>
+  </c:if>
+ <c:if test="${voted!=1}">  
         <li><a href="innot/innovaatiot"><spring:message code="innovaatio.index.nav.vote"/></a></li>
-       <li> <a href="aanet/tulokset"><spring:message code="innovaatio.index.nav.results"/></a></li>
+        </c:if>
         
+ <c:if test="${voted==1 || owner==1 }">         
+       <li> <a href="aanet/tulokset"><spring:message code="innovaatio.index.nav.results"/></a></li>
+ </c:if>       
       
       </ul>
     </div>

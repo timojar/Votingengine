@@ -98,8 +98,9 @@
       </div>
       
       
-      
+       <p><a href="opiskelijat/uusivierailija">You are not registered? Sign up here!</a></p>
       <br>
+     
        <br>
         <br>
       <button class="btn waves-effect waves-light" type="submit" name="action"><spring:message code="innovaatio.login.button" />
@@ -117,6 +118,7 @@
 
 <br>
 <br>
+
 <br>
 <br>
 <br>
