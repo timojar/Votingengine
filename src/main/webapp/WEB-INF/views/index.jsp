@@ -76,7 +76,7 @@
 
   </c:if>
 
- <c:if test="${voted!=1 && user!=1}">  
+ <c:if test="${voted!=1 && user!=1 && owner!=1}">  
   <li><a href="innot/myinnovation"><spring:message code="innovaatio.index.nav.myinnovation" /></a></li>
   </c:if>
  <c:if test="${voted!=1}">  

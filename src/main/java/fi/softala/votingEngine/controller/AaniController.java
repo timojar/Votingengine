@@ -69,7 +69,18 @@ public void setDao(DaoAani dao) {
 
 
 
-
+@RequestMapping(value = "ulos", method = RequestMethod.GET)
+public ModelAndView ulos()
+		{
+	
+	SecurityContextHolder.getContext().setAuthentication(null);
+	ModelAndView model=new ModelAndView("redirect:/");
+	
+	
+	
+	return model;
+	
+}
 
 
 

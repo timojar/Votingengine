@@ -48,7 +48,7 @@ response.setDateHeader ("Expires", -1);
       <a href="#!" class="brand-logo center">Logo</a>
       <ul class="left hide-on-med-and-down">
         
-        <li class="active"><a href="../j_spring_security_logout" >Logout</a></li>
+        <li class="active"><a href="ulos" >Logout</a></li>
       </ul>
     </div>
   </nav>
