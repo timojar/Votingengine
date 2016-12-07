@@ -24,7 +24,7 @@
     <div class="nav-wrapper blue lighten-1">
       <a href="#!" class="brand-logo center">Logo</a>
       <ul class="left hide-on-med-and-down">
-       <li><a href="logout" > <spring:message code="innovaatio.listaus.link" /></a></li> 
+       <li><a href="ulos" > <spring:message code="innovaatio.listaus.link" /></a></li> 
       </ul>
     </div>
   </nav>

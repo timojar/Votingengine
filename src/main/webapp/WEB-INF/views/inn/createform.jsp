@@ -60,14 +60,14 @@
           <div class="input-field col s6">
             <form:input path="nimi"  id="input_text" type="text" maxlength="50" length="50"/>
 
-            <label for="input_text">Input text</label><form:errors path="nimi" cssClass="Virheteksti"/>	
+            <label for="input_text">Name of the Innovation</label><form:errors path="nimi" cssClass="Virheteksti"/>	
           </div>
         </div>
         <div class="row">
           <div class="input-field col s8">
           
             <form:input path="aihe"  id="input_text" type="text" maxlength="70" length="70"/>
-            <label for="textarea1">Textarea</label><form:errors path="aihe" cssClass="Virheteksti"/>
+            <label for="textarea1">Describe your topic</label><form:errors path="aihe" cssClass="Virheteksti"/>
           </div>
         </div>
         
