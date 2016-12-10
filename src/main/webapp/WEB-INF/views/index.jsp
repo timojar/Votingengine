@@ -133,7 +133,7 @@
         <div class="col s12 m7">
           <div class="card">
             <div class="card-image">
-              <img src="resources/kuvat/niagarafalls.jpg">
+              <img src="resources/kuvat/greatideas.jpg">
               <span class="card-title"><spring:message code="innovaatio.index.cardtitle"/></span>
             </div>
             <div class="card-content">
