@@ -2,9 +2,12 @@
 
 
 #sisalto {margin-left: 330px}
+select {width: 300px}
 
 #nimi {font-weight: bold}
 
 #kielet {float: right}
+
+#hh {width: 50px}
 
 #alaotsikko {font-weight: bold}
