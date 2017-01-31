@@ -1,5 +1,6 @@
 package fi.softala.votingEngine.controller;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -7,6 +8,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,14 +23,31 @@ import fi.softala.votingEngine.bean.Innovaatio;
 import fi.softala.votingEngine.bean.Kuukausi;
 import fi.softala.votingEngine.bean.Pvm;
 import fi.softala.votingEngine.bean.Votemode;
+import fi.softala.votingEngine.dao.Aika.DaoAika;
 @SessionAttributes({ "kk", "inno" })
 @Controller
 @RequestMapping(value = "/management")
 public class OwnerController {
 	
-	
+@Inject
+private DaoAika daoAika;
+
+
+
 
 	
+	public DaoAika getDaoAika() {
+	return daoAika;
+}
+
+
+
+public void setDaoAika(DaoAika daoAika) {
+	this.daoAika = daoAika;
+}
+
+
+
 	@RequestMapping(value = "voting")
 	public ModelAndView chooseMonth() {
 
@@ -35,9 +56,14 @@ public class OwnerController {
 		
 		Calendar kalenteri = Calendar.getInstance();
 		kalenteri.setTime(date);
+		YearMonth yearMonth = YearMonth.now();
+		int vuosi=yearMonth.getYear();
 		
 		List<Kuukausi> kuukaudet=haeKuukaudet();
 		
+		System.out.println("lkm "+kuukaudet.size());
+		
+		model.addObject("y", vuosi);
 		model.addObject("kuukaudet", kuukaudet);
 		model.addObject("kk", new Kuukausi());
 		
@@ -104,8 +130,16 @@ public class OwnerController {
 		}
 		
 		
-		
-		model.addObject("pvm", new Pvm());
+	Pvm p=	new Pvm() ;
+	int startHH=16;
+	int startMM=10;
+	int endHH=18;
+	int endMM=30;
+	p.setStartHH(startHH);
+	p.setStartMM(startMM);
+	p.setEndHH(endHH);
+	p.setEndMM(endMM);	
+		model.addObject("pvm", p);
 		model.addObject("paivat", paivat);
 		
 		return model ;
@@ -113,9 +147,28 @@ public class OwnerController {
 
 	
 	@RequestMapping(value = "pickdate" , method = RequestMethod.POST)
-	public String insertDate(@ModelAttribute(value = "pvm") Pvm p){
-		
-		System.out.println(p.getNimi()+" "+p.getStartHH()+":"+p.getStartMM());
+	public String insertDate(@ModelAttribute(value = "pvm") Pvm p, @ModelAttribute(value = "kk") Kuukausi k){
+		Date aika=null;
+		Date alkuKello=null;
+		Date loppuKello=null;
+		String pvmString=p.getPv()+"."+k.getNro()+"."+k.getVuosi()+"-"+p.getStartHH()+":"+p.getEndMM();
+		String alkuKelloString=p.getPv()+"."+k.getNro()+"."+k.getVuosi()+"-"+p.getStartHH()+":"+p.getStartMM();
+		String loppuKelloString=p.getPv()+"."+k.getNro()+"."+k.getVuosi()+"-"+p.getEndHH()+":"+p.getEndMM();		
+				SimpleDateFormat formpvm=new SimpleDateFormat("dd.MM.yyy-HH:mm");
+				SimpleDateFormat formAlkukello=new SimpleDateFormat("dd.MM.yyy-HH:mm");
+				SimpleDateFormat formLoppuKello=new SimpleDateFormat("dd.MM.yyy-HH:mm");
+				try {
+					alkuKello=formAlkukello.parse(alkuKelloString);
+					loppuKello=formLoppuKello.parse(loppuKelloString);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				p.setLoppuKello(loppuKello);	
+				p.setAlkuKello(alkuKello);
+				
+		daoAika.asetaAika(p);
+		System.out.println(alkuKello);
+		System.out.println(loppuKello);
 		
 		return "";
 	}

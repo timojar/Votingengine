@@ -1,13 +1,37 @@
 package fi.softala.votingEngine.bean;
 
 import java.time.LocalDate;
+import java.util.Date;
+
+import org.joda.time.DateTime;
 
 public class Pvm {
 
 	
 private int id, pv, startHH, startMM, endHH, endMM;
 private LocalDate paivamaara;
+private Date  alkuKello, loppuKello;
+
+
 private String nimi;
+
+
+
+
+
+public Date getLoppuKello() {
+	return loppuKello;
+}
+public void setLoppuKello(Date loppuKello) {
+	this.loppuKello = loppuKello;
+}
+public Date getAlkuKello() {
+	return alkuKello;
+}
+public void setAlkuKello(Date alkuKello) {
+	this.alkuKello = alkuKello;
+}
+
 public int getId() {
 	return id;
 }

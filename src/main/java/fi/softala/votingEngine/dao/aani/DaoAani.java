@@ -10,8 +10,8 @@ import fi.softala.votingEngine.bean.Aani;
 public interface DaoAani {
 	
 @PreAuthorize("hasAnyRole('ROLE_ADMIN, ROLE_USER, OWNER_USER')")	
-abstract void talletaAani(Aani aani);
-abstract void muutaoikeuksia(int opiskelijaId);
+public abstract void talletaAani(Aani aani);
+public abstract void muutaoikeuksia(int opiskelijaId);
 public abstract List<Aani> listaaTulokset();
 	
 	

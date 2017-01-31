@@ -1,6 +1,9 @@
 package fi.softala.votingEngine.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -31,10 +34,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import fi.softala.votingEngine.bean.Aika;
 import fi.softala.votingEngine.bean.Innovaatio;
 import fi.softala.votingEngine.bean.Opiskelija;
+import fi.softala.votingEngine.bean.Pvm;
 import fi.softala.votingEngine.bean.Ryhma;
 import fi.softala.votingEngine.bean.Token;
+import fi.softala.votingEngine.dao.Aika.DaoAika;
 import fi.softala.votingEngine.dao.innovaatio.InnovaatioDao;
 import fi.softala.votingEngine.dao.opiskelija.OpiskelijaDao;
 import fi.softala.votingEngine.dao.token.TokenDao;
@@ -55,6 +61,19 @@ public class InnovaatioController {
 
 	@Autowired
 	private SpostiLahetys lahetys;
+
+	@Autowired
+	private DaoAika aikadao;
+	
+	
+	
+	public DaoAika getAikadao() {
+		return aikadao;
+	}
+
+	public void setAikadao(DaoAika aikadao) {
+		this.aikadao = aikadao;
+	}
 
 	public TokenDao getTokendao() {
 		return tokendao;
@@ -86,17 +105,26 @@ public class InnovaatioController {
 	@RequestMapping(value = "innovaatiot", method = RequestMethod.GET)
 	public ModelAndView getdata() {
 
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
+boolean ajoitus=tarkistaAika();
+ModelAndView model = new ModelAndView("errors/wrongtime");
+
+Aika a=haeAika();
+model.addObject("aika", a);
+
+
+
+if(ajoitus==true){
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
 		Opiskelija o = opiskelijadao.haeOpiskelija(email);
 		int ryhmaId = o.getRyhmaId();
-
-		ModelAndView model = new ModelAndView("inn/listaus");
+model.setViewName("inn/listaus");
+		
 		List<Innovaatio> innovaatiot = innovaatiodao.haeKaikki(ryhmaId);
 		model.addObject("opiskelija", o);
 		model.addObject("innot", innovaatiot);
-		model.addObject("inno", new Innovaatio());
+		model.addObject("inno", new Innovaatio());}
 
 		return model;
 
@@ -399,7 +427,81 @@ String opiskelijanumeroKryptattuna=opiskelijadao.talletaOpiskelija(opiskelija);
 	
 	
 	
+	private boolean tarkistaAika(){
+		
+		boolean ajoitus=false;
+
+		try {
+			Aika a=aikadao.haeAika();
+		  
+		    Date pvm = a.getPvm();
+		    Date time1=a.getAlku();
+		    
+		    String alku=pvm+" "+time1.getHours()+":"+time1.getMinutes();
+		    Calendar calendar1 = Calendar.getInstance();
+		    calendar1.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(alku));
+		   
+		    
+		    
+		    Date time2=a.getLoppu();
+		    String loppu=pvm+" "+time2.getHours()+":"+time2.getMinutes();
+		    Calendar calendar2 = Calendar.getInstance();
+		    calendar2.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(loppu));
+		    
+		    Calendar calendar3 = Calendar.getInstance();
+		    calendar3.setTime(new Date());
+		    
+		    if(calendar3.after(calendar1)&&calendar3.before(calendar2)){
+		    	
+		    ajoitus =true;
+		    	
+		    	
+		    }
+		    
+		    
+		    
+		    
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+			
+		
+		
+		return ajoitus;
+	}
 	
+	
+	
+	
+private Aika haeAika(){
+	Aika a=null;
+	try {
+		 a=aikadao.haeAika();
+		
+	    Date pvm = a.getPvm();
+	    Date time1=a.getAlku();
+	    
+	    String alkustr=time1.getHours()+":"+time1.getMinutes();
+	    
+	   
+	    
+	    
+	    Date time2=a.getLoppu();
+	    String loppustr=time2.getHours()+":"+time2.getMinutes();
+	   
+	    String aikavali=alkustr+"-"+loppustr;
+	    
+	  a.setAikavali(aikavali);
+	    a.setPvm(pvm);
+	    
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+		
+	
+	return a;
+	
+}
 	
 	
 	
