@@ -1,5 +1,6 @@
-
-
+INSERT INTO votedate 
+	(id) values(1);
+	
 INSERT INTO
 	ryhma
 VALUES
@@ -17,5 +18,4 @@ VALUES
     
     
     
-insert into opiskelija(etunimi, sukunimi, opiskelijanumero, email, ryhmaId, valtuusId, enabled, opiskelijanumeroKryptattuna) values('Anne','Valsta','VALAN','anne.valsta@haaga-helia.fi',1,4,1,'9281c12185aa1a372627c4eb6cd5aba9341ca8a72343d7cb05fffb072975e314301aa50afa8af963')   
-	
+insert into opiskelija(etunimi, sukunimi, opiskelijanumero, email, ryhmaId, valtuusId, enabled, opiskelijanumeroKryptattuna) values('Anne','Valsta','VALAN','anne.valsta@haaga-helia.fi',1,4,1,'9281c12185aa1a372627c4eb6cd5aba9341ca8a72343d7cb05fffb072975e314301aa50afa8af963')

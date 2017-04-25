@@ -3,7 +3,17 @@
 
 
 
+Create table 
 
+votedate
+(
+id int NOT NULL  primary key,
+
+
+
+alku datetime,
+loppu datetime)
+DEFAULT CHARSET=utf8;
 
 
 
