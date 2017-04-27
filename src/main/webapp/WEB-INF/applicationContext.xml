@@ -126,6 +126,9 @@
 		<sec:intercept-url pattern="/aanet/log**" access="hasAnyRole('ROLE_ADMIN, ROLE_USER, OWNER_USER, VOTED_USER')" /> 
 		<sec:intercept-url pattern="/aanet/log*" access="isAuthenticated()" />
 		
+		<sec:intercept-url pattern="/management/**" access="hasRole('OWNER_USER')"  /> 
+		<sec:intercept-url pattern="/management/*" access="isAuthenticated()" />
+		
 		
 		
 		<sec:intercept-url pattern="/*" access="permitAll" />

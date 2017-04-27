@@ -85,7 +85,11 @@
         
  <c:if test="${voted==1 || owner==1 }">         
        <li> <a href="aanet/tulokset"><spring:message code="innovaatio.index.nav.results"/></a></li>
- </c:if>       
+ </c:if>      
+ 
+ <c:if test="${owner==1 }">         
+       <li> <a href="management/index">Set voting</a></li>
+ </c:if>  
       
       </ul>
     </div>

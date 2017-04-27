@@ -11,14 +11,17 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import fi.softala.votingEngine.bean.Aika;
 import fi.softala.votingEngine.bean.Innovaatio;
 import fi.softala.votingEngine.bean.Kuukausi;
 import fi.softala.votingEngine.bean.Pvm;
@@ -170,8 +173,32 @@ public void setDaoAika(DaoAika daoAika) {
 		System.out.println(alkuKello);
 		System.out.println(loppuKello);
 		
-		return "";
+		return "redirect:/management/index";
+		
+
 	}
+	@RequestMapping(value = "ulos", method = RequestMethod.GET)
+	public String indexAndLogout() {
+		SecurityContextHolder.getContext().setAuthentication(null);
+		return "redirect:/";
+	}
+
+	
+	
+
+	@RequestMapping(value = "index")
+	public ModelAndView index() {
+
+		ModelAndView model=new ModelAndView("manag/index");
+		Aika a=haeAika();
+		model.addObject("aika", a);
+		return model ;
+	}
+
+	
+	
+	
+	
 	
 	
 	
@@ -197,6 +224,39 @@ public void setDaoAika(DaoAika daoAika) {
 		
 		
 	}
+	
+	
+	
+	
+private Aika haeAika(){
+	Aika a=null;
+	try {
+		 a=daoAika.haeAika();
+		
+	    Date pvm = a.getPvm();
+	    Date time1=a.getAlku();
+	    
+	    String alkustr=time1.getHours()+":"+time1.getMinutes();
+	    
+	   
+	    
+	    
+	    Date time2=a.getLoppu();
+	    String loppustr=time2.getHours()+":"+time2.getMinutes();
+	   
+	    String aikavali=alkustr+"-"+loppustr;
+	    
+	  a.setAikavali(aikavali);
+	    a.setPvm(pvm);
+	    
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+		
+	
+	return a;
+	
+}
 	
 	
 	

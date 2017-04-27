@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title><spring:message code="innovaatio.succeed.title" /></title>
+<title>Äänestyksen asettaminen</title>
 
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -51,7 +51,7 @@
 <br><div id="sisalto">
 
 
-<h1><spring:message code="innovaatio.succeed.heading" /></h1>
+<h1>Valitse äänestys päivän vuosi ja kuukausi</h1>
 
 
 

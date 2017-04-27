@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title><spring:message code="innovaatio.succeed.title" /></title>
+<title>Äänestys päivä ja kellon aika</title>
 
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -51,7 +51,7 @@
 <br><div id="sisalto">
 
 
-<h1><spring:message code="innovaatio.succeed.heading" /></h1>
+<h1>Aseta päivämäärä ja tarkka kellon aika</h1>
 
 
 
@@ -78,7 +78,7 @@
 
 
 
-<h4>Starts at</h4>
+<h4>Alkaa</h4>
 
 
 <div class="input-field inline">
@@ -104,7 +104,7 @@
 <br>
                    <br>
 
-<h4>Ends at</h4>
+<h4>Loppuu</h4>
 
 
 <div class="input-field inline">

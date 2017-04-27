@@ -1,13 +1,14 @@
 package fi.softala.votingEngine.bean;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Aika {
 
 private String aikavali;
 private Date pvm;	
-private Time alku, loppu;
+private Timestamp alku, loppu;
 
 
 
@@ -23,16 +24,16 @@ public Date getPvm() {
 public void setPvm(Date pvm) {
 	this.pvm = pvm;
 }
-public Time getAlku() {
+public Timestamp getAlku() {
 	return alku;
 }
-public void setAlku(Time alku) {
+public void setAlku(Timestamp alku) {
 	this.alku = alku;
 }
-public Time getLoppu() {
+public Timestamp getLoppu() {
 	return loppu;
 }
-public void setLoppu(Time loppu) {
+public void setLoppu(Timestamp loppu) {
 	this.loppu = loppu;
 }
 

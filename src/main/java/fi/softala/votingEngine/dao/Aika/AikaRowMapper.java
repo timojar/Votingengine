@@ -17,10 +17,10 @@ public Aika mapRow (ResultSet rs, int rownumber) throws SQLException{
 	Aika a= new Aika();
 	
 	
-	a.setAlku(rs.getTime("alku"));
-	a.setLoppu(rs.getTime("loppu"));
+	a.setAlku(rs.getTimestamp("alku"));
+	a.setLoppu(rs.getTimestamp("loppu"));
 	a.setPvm(rs.getDate("loppu"));
-	System.out.println(rs.getTime("alku"));
+	
 	
 	return a;
 	
