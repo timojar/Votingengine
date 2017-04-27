@@ -50,14 +50,14 @@
 <br>
 	<br>
 	<br>
-<h1>Äänestys ei ole vielä auki</h1>
+<h1>Äänestys ei ole auki</h1>
 
 	<br>
 	<br>
 	
 	<br>
 
-<h4>Äänestys alkaa vastaa <c:out value="${aika.pvm }"></c:out> klo <c:out value="${aika.aikavali }"></c:out></h4>
+<h4>Voit äänestää <c:out value="${aika.pvm }"></c:out> klo <c:out value="${aika.aikavali }"></c:out></h4>
  <h4><a href="ulos">Tästä pääset takas etusivulle</a></h4>
 </div>
 <br>

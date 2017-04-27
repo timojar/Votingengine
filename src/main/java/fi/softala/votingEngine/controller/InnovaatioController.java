@@ -308,7 +308,7 @@ String opiskelijanumeroKryptattuna=opiskelijadao.talletaOpiskelija(opiskelija);
 					+ request.getServerPort() + "/softala_votingengine/token/"
 					+ tokenId;
 			String body = emailBody(url, o, i);
-			lahetys.sendMail(v.getEmail(), "Invite to InnoDay", body);
+			lahetys.sendMail(v.getEmail(), "Invite to join your innovation-team", body);
 		}
 		return model;
 	}
@@ -420,7 +420,7 @@ String opiskelijanumeroKryptattuna=opiskelijadao.talletaOpiskelija(opiskelija);
 				+ "-innovation group." + linebreak
 				+ "Click link below to join:" + linebreak + linebreak + url
 				+ linebreak + linebreak + "Best regards" + linebreak
-				+ "Innovation Conference ";
+				+ "InnoEve ";
 
 		return text;
 	}
