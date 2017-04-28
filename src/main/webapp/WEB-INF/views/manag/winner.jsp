@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Set voting</title>
+<title>Winner is</title>
 
 <link type="text/css" rel="stylesheet" href="../resources/css/materialize.min.css" 
 	media="screen,projection" />
@@ -25,6 +25,7 @@
       <a href="#!" class="brand-logo center">Logo</a>
       <ul class="left hide-on-med-and-down">
        <li><a href="ulos" > <spring:message code="innovaatio.listaus.link" /></a></li> 
+       <li><a href="../" >To frontpage</a></li> 
       </ul>
     </div>
   </nav>
@@ -43,17 +44,16 @@
 
 <br>
 
-<h1>Äänestyksen asettaminen</h1>
+<h1>Leffa lipun voittaa</h1>
 
 <br>
 <br>
-<a class="waves-effect waves-light btn" href="voting">Aseta äänestys</a>
 
 
 
+<a class="waves-effect waves-light btn" href="winner">Arvo uudelleen</a>
 
-<br>
-<br>
+
     
     
         
@@ -71,17 +71,19 @@
       <table class="striped">
         <thead>
           <tr>
-              <th data-field="id">Äänestys päivä</th>
-              <th data-field="name">Äänestys aika</th>
-            
+          	<th data-field="id">nro</th>
+              <th data-field="id">etunimi</th>
+              <th data-field="name">sukunimi</th>
+            	<th data-field="name">email</th>
           </tr>
         </thead>
 
         <tbody>
           <tr>
-            <td><c:out value="${aika.pvm }"></c:out></td>
-            <td><c:out value="${aika.aikavali }"></c:out></td>
-           
+            <td><c:out value="${opiskelija.opiskelijanumero }"></c:out></td>
+            <td><c:out value="${opiskelija.etunimi }"></c:out></td>
+           <td><c:out value="${opiskelija.sukunimi }"></c:out></td>
+           <td><c:out value="${opiskelija.email }"></c:out></td>
           </tr>
           
           
@@ -90,6 +92,10 @@
       </table>
             
 
+<br>
+<br>
+
+<br>
 
 
     <br>

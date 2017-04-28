@@ -215,7 +215,28 @@ public class OpiskelijaSpringImpl implements OpiskelijaDao{
 		
 	
 	
+	public  Opiskelija arvoVoittaja() {
+		
+		
+		
+		
+
+		String sql = "SELECT * FROM opiskelija where valtuusId=3 ORDER BY RAND() LIMIT 1";
+		
+		RowMapper<Opiskelija> mapper = new OpiskelijaRowMapper();
+
+		Opiskelija o = jdbcTemplate.queryForObject(sql, mapper);
+		return o;
+
+
 	
+	
+	
+	
+	
+	
+}
+
 	
 	
 	

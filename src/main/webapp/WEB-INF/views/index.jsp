@@ -90,6 +90,11 @@
  <c:if test="${owner==1 }">         
        <li> <a href="management/index">Set voting</a></li>
  </c:if>  
+ 
+ <c:if test="${owner==1 }">         
+       <li> <a href="management/winner">Lottery</a></li>
+ </c:if>  
+      
       
       </ul>
     </div>

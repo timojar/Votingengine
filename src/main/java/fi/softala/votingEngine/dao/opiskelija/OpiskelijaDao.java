@@ -21,7 +21,7 @@ public interface OpiskelijaDao {
 	
 	public abstract List<Opiskelija> haeInnovaationOpiskelijat(int ryhmaId);
 			
-	
+	public abstract Opiskelija arvoVoittaja();
 	
 
 }

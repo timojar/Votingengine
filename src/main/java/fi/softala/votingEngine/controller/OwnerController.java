@@ -24,9 +24,11 @@ import org.springframework.web.servlet.ModelAndView;
 import fi.softala.votingEngine.bean.Aika;
 import fi.softala.votingEngine.bean.Innovaatio;
 import fi.softala.votingEngine.bean.Kuukausi;
+import fi.softala.votingEngine.bean.Opiskelija;
 import fi.softala.votingEngine.bean.Pvm;
 import fi.softala.votingEngine.bean.Votemode;
 import fi.softala.votingEngine.dao.Aika.DaoAika;
+import fi.softala.votingEngine.dao.opiskelija.OpiskelijaDao;
 @SessionAttributes({ "kk", "inno" })
 @Controller
 @RequestMapping(value = "/management")
@@ -47,6 +49,24 @@ private DaoAika daoAika;
 
 public void setDaoAika(DaoAika daoAika) {
 	this.daoAika = daoAika;
+}
+
+
+
+
+
+@Autowired
+private OpiskelijaDao opiskelijadao;
+
+
+	public OpiskelijaDao getOpiskelijadao() {
+	return opiskelijadao;
+}
+
+
+
+public void setOpiskelijadao(OpiskelijaDao opiskelijadao) {
+	this.opiskelijadao = opiskelijadao;
 }
 
 
@@ -192,6 +212,16 @@ public void setDaoAika(DaoAika daoAika) {
 		ModelAndView model=new ModelAndView("manag/index");
 		Aika a=haeAika();
 		model.addObject("aika", a);
+		return model ;
+	}
+
+	
+	@RequestMapping(value = "winner")
+	public ModelAndView winner() {
+
+		ModelAndView model=new ModelAndView("manag/winner");
+		Opiskelija o=opiskelijadao.arvoVoittaja();
+		model.addObject("opiskelija", o);
 		return model ;
 	}
 
