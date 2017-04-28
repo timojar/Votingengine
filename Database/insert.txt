@@ -18,4 +18,7 @@ VALUES
     
     
     
-insert into opiskelija(etunimi, sukunimi, opiskelijanumero, email, ryhmaId, valtuusId, enabled, opiskelijanumeroKryptattuna) values('Anne','Valsta','VALAN','anne.valsta@haaga-helia.fi',1,4,1,'9281c12185aa1a372627c4eb6cd5aba9341ca8a72343d7cb05fffb072975e314301aa50afa8af963')
+insert into opiskelija(etunimi, sukunimi, opiskelijanumero, email, ryhmaId, valtuusId, enabled, opiskelijanumeroKryptattuna) values('Anne','Valsta','VALAN','anne.valsta@haaga-helia.fi',1,4,1,'9281c12185aa1a372627c4eb6cd5aba9341ca8a72343d7cb05fffb072975e314301aa50afa8af963');
+
+    
+insert into opiskelija(etunimi, sukunimi, opiskelijanumero, email, ryhmaId, valtuusId, enabled, opiskelijanumeroKryptattuna) values('Timo','Jarmala','TIMON','timo_jarmala@luukku.com ',1,4,1,'cc29adf84b9dbe2d4538c9ea94a63e5904e7fd6dbee4cf37e201c46592af82e496309f7ef0c2d9aa')
